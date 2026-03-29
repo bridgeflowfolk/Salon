@@ -144,13 +144,14 @@ main {
   background:linear-gradient(to right,var(--sauge),var(--or),var(--lotus));
 }
 
-/* -- Bouton Itinéraire -- */
+/* ── BOUTON ITINÉRAIRE ── */
+/* CORRECTION : display:none par défaut, JS switche en inline-flex */
 .btn-maps {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin: 1.5rem auto 0 auto; /* Centrage horizontal */
+  margin: 1.5rem auto 0 auto;
   padding: 0.6rem 1.2rem;
   background: #fff;
   border: 1px solid var(--or);
@@ -163,14 +164,15 @@ main {
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
-
 .btn-maps:hover {
   background: var(--or);
-  color: white;
+  color: #fff;
   transform: translateY(-2px);
 }
 
-/* -- Message de fin -- */
+/* ── MESSAGE FIN/EN COURS ── */
+/* CORRECTION : défini une seule fois ici, supprimé du <style> inline HTML */
+/* Pas de !important nécessaire puisqu'il n'y a plus de doublon */
 .fini-msg {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -178,37 +180,26 @@ main {
   color: var(--sauge);
   text-align: center;
   grid-column: 1 / -1;
-  /* On force l'opacité et on annule toute animation */
-  animation: none !important; 
-  opacity: 1 !important;
+  animation: none;
+  opacity: 1;
 }
 
-/* -- Pétales -- */
+/* ── PÉTALES ── */
+/* CORRECTION : z-index:1 au lieu de 100 — ne passe plus devant la nav */
 .petale {
   position: fixed;
-  top: -5vh; /* Départ légèrement au-dessus de l'écran */
+  top: -5vh;
   pointer-events: none;
-  z-index: 100; /* Passe devant tout */
+  z-index: 1;
   opacity: 0;
   animation: tomber linear infinite;
 }
 
-/* IMPORTANT : Définition du mouvement de chute */
 @keyframes tomber {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.4;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
+  0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
 /* ── FOOTER ── */
