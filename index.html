@@ -260,31 +260,64 @@
   </main>
 
   <script>
-    const CIBLE = new Date("2026-04-04T10:00:00").getTime();
-    function pad(n){ return String(n).padStart(2,"0"); }
-    function maj(){
-      const d = CIBLE - Date.now();
-      if(d<=0){ document.getElementById("timer").innerHTML='<p class="fini-msg">🌸 C\'est aujourd\'hui !</p>'; return; }
-      document.getElementById("jours").textContent    = pad(Math.floor(d/86400000));
-      document.getElementById("heures").textContent   = pad(Math.floor((d%86400000)/3600000));
-      document.getElementById("minutes").textContent  = pad(Math.floor((d%3600000)/60000));
-      document.getElementById("secondes").textContent = pad(Math.floor((d%60000)/1000));
-    }
-    setInterval(maj,1000); maj();
+  const DEBUT = new Date("2026-04-04T10:00:00").getTime();
+  const FIN   = new Date("2026-04-05T18:00:00").getTime();
+  const MAPS_URL = "https://www.google.com/maps/dir/?api=1&destination=Salle+de+la+Ferme+du+Château+Nogent-le-Roi";
 
-    function toggleMenu(){
-      document.getElementById("navMobile").classList.toggle("ouvert");
+  function pad(n){ return String(n).padStart(2,"0"); }
+
+  function maj(){
+    const maintenant = Date.now();
+    const timerElement = document.getElementById("timer");
+    const labelElement = document.querySelector(".timer-label");
+
+    // Bouton itinéraire HTML
+    const boutonMaps = `<br><a href="${MAPS_URL}" target="_blank" class="btn-maps">📍 Calculer mon itinéraire</a>`;
+
+    // 1. APRÈS LE SALON
+    if (maintenant > FIN) {
+      labelElement.style.display = "none";
+      // On ajoute style="animation:none" directement dans la balise pour être sûr
+      timerElement.innerHTML = '<p class="fini-msg" style="animation:none">✨ Merci de votre visite ! <br><span style="font-size:1.2rem; opacity:0.8">A très vite.</span></p>';
+      return;
     }
 
-    // Pétales
-    const P=["🌸","🌺","✿","❀","🌼"];
-    for(let i=0;i<10;i++){
-      const e=document.createElement("div"); e.className="petale";
-      e.textContent=P[Math.floor(Math.random()*P.length)];
-      const t=Math.random()*0.8+0.6;
-      e.style.cssText=`left:${Math.random()*100}%;font-size:${t}rem;animation-duration:${Math.random()*15+12}s;animation-delay:${Math.random()*15}s;`;
-      document.body.appendChild(e);
+    // 2. PENDANT LE SALON
+    if (maintenant >= DEBUT && maintenant <= FIN) {
+      labelElement.style.display = "none";
+      // Idem ici pour stopper tout clignotement
+      timerElement.innerHTML = `<p class="fini-msg" style="animation:none">🌸 Le salon est ouvert ! <br><span style="font-size:1.2rem; opacity:0.8">Nous vous attendons jusqu'à 18h</span></p>${boutonMaps}`;
+      return;
     }
-  </script>
+
+    // 3. AVANT LE SALON (Décompte + Bouton)
+    const d = DEBUT - maintenant;
+    document.getElementById("jours").textContent    = pad(Math.floor(d/86400000));
+    document.getElementById("heures").textContent   = pad(Math.floor((d%86400000)/3600000));
+    document.getElementById("minutes").textContent  = pad(Math.floor((d%3600000)/60000));
+    document.getElementById("secondes").textContent = pad(Math.floor((d%60000)/1000));
+    
+    // Ajout du bouton sous le décompte s'il n'y est pas déjà
+    if(!document.querySelector(".btn-maps")) {
+        timerElement.insertAdjacentHTML('afterend', boutonMaps);
+    }
+  }
+
+  setInterval(maj, 1000); 
+  maj();
+
+  function toggleMenu(){
+    document.getElementById("navMobile").classList.toggle("ouvert");
+  }
+
+  const P=["🌸","🌺","✿","❀","🌼"];
+  for(let i=0;i<10;i++){
+    const e=document.createElement("div"); e.className="petale";
+    e.textContent=P[Math.floor(Math.random()*P.length)];
+    const t=Math.random()*0.8+0.6;
+    e.style.cssText=`left:${Math.random()*100}%;font-size:${t}rem;animation-duration:${Math.random()*15+12}s;animation-delay:${Math.random()*15}s;`;
+    document.body.appendChild(e);
+  }
+</script>
 </body>
 </html>

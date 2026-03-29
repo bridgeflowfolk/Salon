@@ -144,6 +144,73 @@ main {
   background:linear-gradient(to right,var(--sauge),var(--or),var(--lotus));
 }
 
+/* -- Bouton Itinéraire -- */
+.btn-maps {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem auto 0 auto; /* Centrage horizontal */
+  padding: 0.6rem 1.2rem;
+  background: #fff;
+  border: 1px solid var(--or);
+  border-radius: 50px;
+  color: var(--terre);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.btn-maps:hover {
+  background: var(--or);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* -- Message de fin -- */
+.fini-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 2.5rem;
+  color: var(--sauge);
+  text-align: center;
+  grid-column: 1 / -1;
+  /* On force l'opacité et on annule toute animation */
+  animation: none !important; 
+  opacity: 1 !important;
+}
+
+/* -- Pétales -- */
+.petale {
+  position: fixed;
+  top: -5vh; /* Départ légèrement au-dessus de l'écran */
+  pointer-events: none;
+  z-index: 100; /* Passe devant tout */
+  opacity: 0;
+  animation: tomber linear infinite;
+}
+
+/* IMPORTANT : Définition du mouvement de chute */
+@keyframes tomber {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 /* ── FOOTER ── */
 footer {
   text-align:center;
