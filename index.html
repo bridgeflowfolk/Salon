@@ -9,7 +9,6 @@
   <meta name="description" content="Découvrez le salon Bien-Être et Créateurs les 4 & 5 Avril 2026 à Nogent-le-Roi. 38 exposants, conférences, massages et ateliers gratuits. Entrée libre !">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bridgeflowfolk.github.io/Salon/" />
-
   <meta name="google-site-verification" content="DoJfMer3ESnNXdqjHvuCK0qN9JkDQuiEnxDygBVS-Bo" />
 
   <!-- Open Graph -->
@@ -26,15 +25,15 @@
   <meta name="twitter:description" content="4 & 5 avril 2026 – Entrée gratuite – 38 exposants">
   <meta name="twitter:image" content="https://bridgeflowfolk.github.io/Salon/preview.jpg">
 
-  <!-- Perf -->
+  <!-- Fonts : double preconnect recommandé par Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-
-  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
 
+  <!-- CSS commun -->
   <link rel="stylesheet" href="commun.css" />
 
-  <!-- 🔥 STRUCTURED DATA EVENT -->
+  <!-- Structured Data : Event -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,9 +53,7 @@
         "addressCountry": "FR"
       }
     },
-    "image": [
-      "https://bridgeflowfolk.github.io/Salon/preview.jpg"
-    ],
+    "image": ["https://bridgeflowfolk.github.io/Salon/preview.jpg"],
     "description": "Salon intergénérationnel bien-être avec 38 exposants, ateliers, conférences et massages. Entrée gratuite.",
     "organizer": {
       "@type": "Organization",
@@ -71,7 +68,7 @@
   }
   </script>
 
-  <!-- 🔥 ORGANIZATION -->
+  <!-- Structured Data : Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -81,11 +78,12 @@
     "logo": "https://bridgeflowfolk.github.io/Salon/preview.jpg"
   }
   </script>
-<style>
+
+  <style>
     /* ── Timer ── */
     .timer-section {
       opacity:0; animation:glisser-haut 0.8s ease forwards 0.6s;
-      margin-bottom:3rem;
+      margin-bottom:2rem;
     }
     .timer-label {
       text-align:center; font-size:0.6rem;
@@ -119,12 +117,12 @@
       text-transform:uppercase; color:var(--terre);
       margin-top:0.4rem; display:block;
     }
-    .fini-msg {
-      font-family:'Cormorant Garamond', serif; font-style:italic;
-      font-size:2.5rem; color:var(--sauge); text-align:center;
-      grid-column:1/-1; animation:pulse 2s infinite;
+
+    /* ── Wrapper bouton Maps (centrage) ── */
+    .maps-wrapper {
+      text-align:center;
+      margin-bottom:3rem;
     }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
     /* ── Infos ── */
     .infos {
@@ -189,7 +187,7 @@
       background:rgba(255,255,255,0.4);
     }
 
-    /* ── Entrée libre badge ── */
+    /* ── Badge entrée libre ── */
     .badge-entree {
       display:inline-block;
       background:linear-gradient(135deg,var(--sauge),#5a8e5e);
@@ -205,18 +203,6 @@
       opacity:0; animation:glisser-haut 0.8s ease forwards 1.2s;
     }
 
-    /* ── Pétales ── */
-    .petale {
-      position:fixed; pointer-events:none; z-index:0;
-      opacity:0; animation:tomber linear infinite;
-    }
-    @keyframes tomber {
-      0%   { transform:translateY(-5vh) rotate(0deg); opacity:0; }
-      10%  { opacity:0.5; }
-      90%  { opacity:0.3; }
-      100% { transform:translateY(105vh) rotate(360deg); opacity:0; }
-    }
-
     /* ── Déco cercles ── */
     .deco { position:fixed; border-radius:50%; pointer-events:none; z-index:0; }
     .deco-1 { width:500px;height:500px;top:-150px;right:-150px;border:1px solid rgba(201,169,110,0.2); }
@@ -228,10 +214,7 @@
   </style>
 </head>
 <body>
-    <!-- SEO caché -->
-  <h1 style="display:none;">
-    Salon bien-être Nogent-le-Roi avril 2026 – exposants, ateliers et conférences
-  </h1>
+
   <div class="deco deco-1"></div>
   <div class="deco deco-2"></div>
 
@@ -255,7 +238,11 @@
   </div>
 
   <main>
-    <div class="hero">
+
+    <!-- CORRECTION : <h1> caché supprimé — pénalité SEO évitée -->
+
+    <!-- Hero : classe anime conservée pour l'animation CSS -->
+    <div class="hero anime" style="animation-delay:0.2s">
       <span class="hero-tag">Bridge &amp; Flow Folk · Créons des ponts</span>
       <h1>Bien-Être<br><em>et</em><br>Créateurs</h1>
       <p class="hero-sub">Salon intergénérationnel · Un pont entre les êtres</p>
@@ -265,17 +252,35 @@
       <span class="badge-entree">✨ Entrée libre &amp; gratuite</span>
     </div>
 
-    <div class="sep"><div class="sep-l"></div><div class="sep-d"></div><div class="sep-d" style="background:var(--sauge)"></div><div class="sep-d"></div><div class="sep-r"></div></div>
+    <div class="sep">
+      <div class="sep-l"></div>
+      <div class="sep-d"></div>
+      <div class="sep-d" style="background:var(--sauge)"></div>
+      <div class="sep-d"></div>
+      <div class="sep-r"></div>
+    </div>
 
     <!-- Compte à rebours -->
     <div class="timer-section">
-      <p class="timer-label">L'événement commence dans</p>
+      <p class="timer-label" id="timer-label">L'événement commence dans</p>
       <div class="timer" id="timer">
         <div class="bloc-temps"><span class="nombre" id="jours">00</span><span class="unite">Jours</span></div>
         <div class="bloc-temps"><span class="nombre" id="heures">00</span><span class="unite">Heures</span></div>
         <div class="bloc-temps"><span class="nombre" id="minutes">00</span><span class="unite">Minutes</span></div>
         <div class="bloc-temps"><span class="nombre" id="secondes">00</span><span class="unite">Secondes</span></div>
       </div>
+    </div>
+
+    <!-- CORRECTION : bouton Maps dans le HTML, caché par CSS, activé par JS -->
+    <!-- display:none défini dans commun.css, JS passe à inline-flex -->
+    <div class="maps-wrapper">
+      <a id="btn-maps"
+         class="btn-maps"
+         href="https://www.google.com/maps/search/?api=1&query=Salle+de+la+Ferme+du+Chateau+Nogent-le-Roi"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Calculer mon itinéraire
+      </a>
     </div>
 
     <!-- Infos -->
@@ -321,73 +326,80 @@
 
     <!-- Footer -->
     <div class="footer-bloc">
-      <a class="fb-lien" href="https://www.facebook.com/people/Bridge-Flow-Folk-BFF/61587252715739/" target="_blank" rel="noopener">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      <a class="fb-lien"
+         href="https://www.facebook.com/people/Bridge-Flow-Folk-BFF/61587252715739/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+          <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+        </svg>
         Suivre Bridge &amp; Flow Folk
       </a>
       <footer>© 2026 Bridge &amp; Flow Folk · Nogent-le-Roi (28) · 06 18 29 18 73</footer>
     </div>
+
   </main>
 
   <script>
-  const DEBUT = new Date("2026-04-04T10:00:00").getTime();
-  const FIN   = new Date("2026-04-05T18:00:00").getTime();
-  const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Salle+de+la+Ferme+du+Chateau+Nogent-le-Roi";
+    const DEBUT = new Date("2026-04-04T10:00:00").getTime();
+    const FIN   = new Date("2026-04-05T18:00:00").getTime();
 
-  function pad(n){ return String(n).padStart(2,"0"); }
+    const elTimer  = document.getElementById("timer");
+    const elLabel  = document.getElementById("timer-label");
+    const elMaps   = document.getElementById("btn-maps");
 
-  function maj(){
-    const maintenant = Date.now();
-    const timerElement = document.getElementById("timer");
-    const labelElement = document.querySelector(".timer-label");
+    function pad(n) { return String(n).padStart(2, "0"); }
 
-    // Bouton itinéraire HTML
-    const boutonMaps = `<br><a href="${MAPS_URL}" target="_blank" class="btn-maps">📍 Calculer mon itinéraire</a>`;
+    function maj() {
+      const now = Date.now();
 
-    // 1. APRÈS LE SALON
-    if (maintenant > FIN) {
-      labelElement.style.display = "none";
-      // On ajoute style="animation:none" directement dans la balise pour être sûr
-      timerElement.innerHTML = '<p class="fini-msg" style="animation:none">✨ Merci de votre visite ! <br><span style="font-size:1.2rem; opacity:0.8">A très vite.</span></p>';
-      return;
+      // ── APRÈS le salon ──────────────────────────────────────────
+      if (now > FIN) {
+        elLabel.style.display = "none";
+        elMaps.style.display  = "none";
+        elTimer.innerHTML = '<p class="fini-msg">✨ Merci de votre visite !<br><span style="font-size:1.2rem;opacity:0.8">À très vite.</span></p>';
+        clearInterval(intervalle);
+        return;
+      }
+
+      // ── PENDANT le salon ────────────────────────────────────────
+      if (now >= DEBUT) {
+        elLabel.style.display = "none";
+        elMaps.style.display  = "inline-flex"; // bouton visible pendant l'événement
+        elTimer.innerHTML = '<p class="fini-msg">🌸 Le salon est ouvert !<br><span style="font-size:1.2rem;opacity:0.8">Nous vous attendons jusqu\'à 18h</span></p>';
+        clearInterval(intervalle);
+        return;
+      }
+
+      // ── AVANT le salon : décompte ───────────────────────────────
+      const d = DEBUT - now;
+      document.getElementById("jours").textContent    = pad(Math.floor(d / 86400000));
+      document.getElementById("heures").textContent   = pad(Math.floor((d % 86400000) / 3600000));
+      document.getElementById("minutes").textContent  = pad(Math.floor((d % 3600000) / 60000));
+      document.getElementById("secondes").textContent = pad(Math.floor((d % 60000) / 1000));
+      // Bouton Maps visible dès le décompte
+      elMaps.style.display = "inline-flex";
     }
 
-    // 2. PENDANT LE SALON
-    if (maintenant >= DEBUT && maintenant <= FIN) {
-      labelElement.style.display = "none";
-      // Idem ici pour stopper tout clignotement
-      timerElement.innerHTML = `<p class="fini-msg" style="animation:none">🌸 Le salon est ouvert ! <br><span style="font-size:1.2rem; opacity:0.8">Nous vous attendons jusqu'à 18h</span></p>${boutonMaps}`;
-      return;
+    const intervalle = setInterval(maj, 1000);
+    maj();
+
+    // ── Menu burger ─────────────────────────────────────────────
+    function toggleMenu() {
+      document.getElementById("navMobile").classList.toggle("ouvert");
     }
 
-    // 3. AVANT LE SALON (Décompte + Bouton)
-    const d = DEBUT - maintenant;
-    document.getElementById("jours").textContent    = pad(Math.floor(d/86400000));
-    document.getElementById("heures").textContent   = pad(Math.floor((d%86400000)/3600000));
-    document.getElementById("minutes").textContent  = pad(Math.floor((d%3600000)/60000));
-    document.getElementById("secondes").textContent = pad(Math.floor((d%60000)/1000));
-    
-    // Ajout du bouton sous le décompte s'il n'y est pas déjà
-    if(!document.querySelector(".btn-maps")) {
-        timerElement.insertAdjacentHTML('afterend', boutonMaps);
+    // ── Pétales ─────────────────────────────────────────────────
+    const PETALES = ["🌸", "🌺", "✿", "❀", "🌼"];
+    for (let i = 0; i < 10; i++) {
+      const e = document.createElement("div");
+      e.className = "petale";
+      e.textContent = PETALES[Math.floor(Math.random() * PETALES.length)];
+      const t = Math.random() * 0.8 + 0.6;
+      e.style.cssText = `left:${Math.random()*100}%;font-size:${t}rem;animation-duration:${Math.random()*15+12}s;animation-delay:${Math.random()*15}s;`;
+      document.body.appendChild(e);
     }
-  }
+  </script>
 
-  setInterval(maj, 1000); 
-  maj();
-
-  function toggleMenu(){
-    document.getElementById("navMobile").classList.toggle("ouvert");
-  }
-
-  const P=["🌸","🌺","✿","❀","🌼"];
-  for(let i=0;i<10;i++){
-    const e=document.createElement("div"); e.className="petale";
-    e.textContent=P[Math.floor(Math.random()*P.length)];
-    const t=Math.random()*0.8+0.6;
-    e.style.cssText=`left:${Math.random()*100}%;font-size:${t}rem;animation-duration:${Math.random()*15+12}s;animation-delay:${Math.random()*15}s;`;
-    document.body.appendChild(e);
-  }
-</script>
 </body>
 </html>
