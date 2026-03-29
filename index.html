@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bien-Être et Créateurs — Salon intergénérationnel</title>
 
   <!-- Open Graph Facebook -->
@@ -351,6 +351,32 @@
       animation: glisser-haut 1s ease forwards 1.8s;
     }
 
+    /* ── Lien Facebook ── */
+    .fb-lien {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 100px;
+      background: #1877F2;
+      color: #fff;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      opacity: 0;
+      animation: glisser-haut 1s ease forwards 1.7s;
+    }
+    .fb-lien:hover {
+      background: #0e5fc0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(24,119,242,0.35);
+    }
+
     /* ── Message fin ── */
     .fini-msg {
       font-family: 'Cormorant Garamond', serif;
@@ -489,6 +515,14 @@
       <p>Plus d'informations &amp; réservations</p>
       <p><strong>Adeline · 06 18 29 18 73</strong></p>
     </div>
+
+    <!-- Lien Facebook -->
+    <a class="fb-lien" href="https://www.facebook.com/people/Bridge-Flow-Folk-BFF/61587252715739/" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+      </svg>
+      Suivre Bridge &amp; Flow Folk sur Facebook
+    </a>
 
     <footer>
       © 2026 Bridge &amp; Flow Folk "Créons des ponts" · Nogent-le-Roi (28)
