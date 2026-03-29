@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programme — Bien-Être et Créateurs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="commun.css" />
+  <style>
+    .onglets {
+      display:flex; gap:0.5rem; justify-content:center;
+      margin-bottom:2rem; flex-wrap:wrap;
+      opacity:0; animation:glisser-haut 0.7s ease forwards 0.4s;
+    }
+    .onglet {
+      padding:0.6rem 1.5rem; border-radius:100px;
+      border:1px solid rgba(201,169,110,0.4);
+      font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
+      cursor:pointer; background:rgba(255,255,255,0.4);
+      color:var(--nuit); transition:all 0.2s;
+    }
+    .onglet.actif {
+      background:var(--terre); color:#fff; border-color:var(--terre);
+    }
+
+    .jour { display:none; }
+    .jour.actif { display:block; }
+
+    .slot {
+      display:grid; grid-template-columns:80px 1fr;
+      gap:0 1.5rem; margin-bottom:1.2rem;
+      opacity:0; animation:glisser-haut 0.6s ease forwards;
+    }
+
+    .slot-heure {
+      font-family:'Cormorant Garamond', serif;
+      font-size:0.95rem; color:var(--terre);
+      padding-top:0.2rem; text-align:right;
+      border-right:2px solid rgba(201,169,110,0.3);
+      padding-right:1rem; white-space:nowrap;
+    }
+
+    .slot-contenu {
+      background:rgba(255,255,255,0.55);
+      border:1px solid rgba(201,169,110,0.25);
+      border-radius:12px; padding:1rem 1.2rem;
+      backdrop-filter:blur(8px);
+    }
+
+    .slot-lieu {
+      font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--sauge); margin-bottom:0.3rem; display:block;
+    }
+    .slot-titre {
+      font-family:'Cormorant Garamond', serif;
+      font-weight:600; font-size:1.1rem; color:var(--nuit);
+      margin-bottom:0.2rem;
+    }
+    .slot-intervenant {
+      font-size:0.65rem; letter-spacing:0.1em; color:var(--terre);
+    }
+    .slot-prix {
+      display:inline-block; margin-top:0.4rem;
+      background:linear-gradient(135deg,rgba(201,169,110,0.2),rgba(201,120,138,0.15));
+      border:1px solid rgba(201,169,110,0.4);
+      font-size:0.55rem; letter-spacing:0.15em; text-transform:uppercase;
+      color:var(--or); padding:0.2rem 0.6rem; border-radius:100px;
+    }
+
+    .slot-cloture {
+      background:linear-gradient(135deg,rgba(122,158,126,0.2),rgba(44,44,58,0.05));
+      border-color:rgba(122,158,126,0.4);
+    }
+    .slot-cloture .slot-titre { color:var(--sauge); }
+
+    .badge-libre {
+      display:inline-block;
+      background:linear-gradient(135deg,var(--sauge),#5a8e5e);
+      color:#fff; font-size:0.65rem; letter-spacing:0.15em;
+      text-transform:uppercase; padding:0.4rem 1.2rem;
+      border-radius:100px; margin-bottom:1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-principale">
+    <a href="index.html" class="nav-logo">BFF</a>
+    <div class="nav-liens">
+      <a href="index.html">Accueil</a>
+      <a href="programme.html" class="actif">Programme</a>
+      <a href="tombola.html">Tombola</a>
+      <a href="savon.html">Savons</a>
+      <a href="buvette.html">Buvette</a>
+    </div>
+    <button class="nav-burger" onclick="toggleMenu()">☰</button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html" onclick="toggleMenu()">🏠 Accueil</a>
+    <a href="programme.html" onclick="toggleMenu()">📅 Programme</a>
+    <a href="tombola.html" onclick="toggleMenu()">🎟️ Tombola</a>
+    <a href="savon.html" onclick="toggleMenu()">🧼 Savons</a>
+    <a href="buvette.html" onclick="toggleMenu()">☕ Buvette</a>
+  </div>
+
+  <main>
+    <div class="hero anime" style="animation-delay:0.2s">
+      <span class="hero-tag">Bien-Être et Créateurs · 4 &amp; 5 Avril 2026</span>
+      <h1>Programme</h1>
+      <p class="hero-sub">Ateliers &amp; Conférences · Entrée libre</p>
+    </div>
+
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <span class="badge-libre">✨ Ateliers &amp; conférences offerts</span>
+    </div>
+
+    <!-- Onglets -->
+    <div class="onglets">
+      <button class="onglet actif" onclick="afficherJour('sam',this)">🗓 Samedi 4 Avril</button>
+      <button class="onglet" onclick="afficherJour('dim',this)">🗓 Dimanche 5 Avril</button>
+    </div>
+
+    <!-- SAMEDI -->
+    <div class="jour actif" id="jour-sam">
+      <div class="slot" style="animation-delay:0.5s">
+        <div class="slot-heure">10h15<br>11h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏠 Atelier à la Ferme</span>
+          <div class="slot-titre">Réveil Sonore Dynamique</div>
+          <div class="slot-intervenant">Laurence Guilloux · Musicothérapeute</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.55s">
+        <div class="slot-heure">10h15<br>11h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château</span>
+          <div class="slot-titre">Mal dormir n'est pas une fatalité</div>
+          <div class="slot-intervenant">Julien Lei Wang · Naturopathe</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.6s">
+        <div class="slot-heure">11h00<br>11h15</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">⭐ Ferme du Château</span>
+          <div class="slot-titre">Promotion du recueil "Survivre et s'épanouir"</div>
+          <div class="slot-intervenant">Isabelle Paoletti · Auteure · Poétesse · Artiste</div>
+          <span class="slot-prix">🏆 Prix Queen BPW 2025</span>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.65s">
+        <div class="slot-heure">11h15<br>12h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏠 Atelier à la Ferme</span>
+          <div class="slot-titre">Séance de Handpan</div>
+          <div class="slot-intervenant">Karine Loizon · Énergéticienne</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.7s">
+        <div class="slot-heure">11h15<br>12h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château</span>
+          <div class="slot-titre">Apaiser ses émotions avec le magnétisme</div>
+          <div class="slot-intervenant">Christophe Limayrac · Magnétiseur · Rebouteux · Auteur</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.75s">
+        <div class="slot-heure">12h15<br>13h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château · Groupe de parole</span>
+          <div class="slot-titre">Et si l'invisible vous parle, en avez-vous été témoin ?</div>
+          <div class="slot-intervenant">Mélanie Mille · Conférencière bénévole</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.8s">
+        <div class="slot-heure">13h00<br>14h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château</span>
+          <div class="slot-titre">Médiation animale</div>
+          <div class="slot-intervenant">Véronique Chérubin · Coach Équin</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.85s">
+        <div class="slot-heure">14h00<br>15h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château</span>
+          <div class="slot-titre">Écrire sa vie, par où commencer quand on ne sait pas par où commencer</div>
+          <div class="slot-intervenant">Gaëlle Levesque · Coach Littéraire</div>
+          <span class="slot-prix">🏆 Prix Queen BPW 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIMANCHE -->
+    <div class="jour" id="jour-dim">
+      <div class="slot" style="animation-delay:0.5s">
+        <div class="slot-heure">10h15<br>11h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château</span>
+          <div class="slot-titre">Les bienfaits de la cuisine Ayurvédique</div>
+          <div class="slot-intervenant">Aude Mornas · Institut INAYA</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.55s">
+        <div class="slot-heure">10h15<br>11h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏠 Atelier Ferme</span>
+          <div class="slot-titre">Yoga Parents-Enfants (3–6 ans)</div>
+          <div class="slot-intervenant">Aurélie Bonnet · Le Cocon d'Aurélie</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.6s">
+        <div class="slot-heure">11h15<br>12h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château</span>
+          <div class="slot-titre">Alimentation anti-inflammatoire, mythe ou réalité ?</div>
+          <div class="slot-intervenant">Françoise Pougnet · Diététicienne-Nutritionniste</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.65s">
+        <div class="slot-heure">13h00<br>14h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏛 Conférence au Château</span>
+          <div class="slot-titre">L'Equi Coaching</div>
+          <div class="slot-intervenant">Véronique Chérubin · Coach Équin</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.7s">
+        <div class="slot-heure">14h00<br>15h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">⭐ Au Château · Événement</span>
+          <div class="slot-titre">Petit Teaser du spectacle "Mon Ami la Plume"</div>
+          <div class="slot-intervenant">Isabelle Paoletti · Auteure · Poétesse · Artiste</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.75s">
+        <div class="slot-heure">15h00<br>16h00</div>
+        <div class="slot-contenu">
+          <span class="slot-lieu">🏠 Atelier Ferme</span>
+          <div class="slot-titre">Initiation aux Bols Chantants</div>
+          <div class="slot-intervenant">Les Voyages de Sandie</div>
+        </div>
+      </div>
+      <div class="slot" style="animation-delay:0.8s">
+        <div class="slot-heure">16h30<br>17h30</div>
+        <div class="slot-contenu slot-cloture">
+          <span class="slot-lieu">🎉 Événement de clôture · Salle de la Ferme</span>
+          <div class="slot-titre">⭐ Tirage Tombola</div>
+          <div class="slot-intervenant">2500 € de lots · Ne manquez pas ça !</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bloc anime" style="animation-delay:1s;text-align:center;margin-top:2rem">
+      <a class="fb-lien" href="https://www.facebook.com/people/Bridge-Flow-Folk-BFF/61587252715739/" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+        Suivre Bridge &amp; Flow Folk
+      </a>
+      <footer>© 2026 Bridge &amp; Flow Folk · Nogent-le-Roi (28) · 06 18 29 18 73</footer>
+    </div>
+  </main>
+
+  <script>
+    function toggleMenu(){ document.getElementById("navMobile").classList.toggle("ouvert"); }
+    function afficherJour(id, btn){
+      document.querySelectorAll(".jour").forEach(j=>j.classList.remove("actif"));
+      document.querySelectorAll(".onglet").forEach(b=>b.classList.remove("actif"));
+      document.getElementById("jour-"+id).classList.add("actif");
+      btn.classList.add("actif");
+    }
+  </script>
+</body>
+</html>
