@@ -390,15 +390,18 @@
     }
 
     // ── Pétales ─────────────────────────────────────────────────
+    // FIX layout thrashing : DocumentFragment = 1 seule écriture DOM
     const PETALES = ["🌸", "🌺", "✿", "❀", "🌼"];
+    const fragment = document.createDocumentFragment();
     for (let i = 0; i < 10; i++) {
       const e = document.createElement("div");
       e.className = "petale";
       e.textContent = PETALES[Math.floor(Math.random() * PETALES.length)];
       const t = Math.random() * 0.8 + 0.6;
       e.style.cssText = `left:${Math.random()*100}%;font-size:${t}rem;animation-duration:${Math.random()*15+12}s;animation-delay:${Math.random()*15}s;`;
-      document.body.appendChild(e);
+      fragment.appendChild(e);
     }
+    document.body.appendChild(fragment); // insertion atomique unique
   </script>
 
 </body>
