@@ -35,38 +35,66 @@
 
   <!-- Structured Data : Event -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Salon Bien-Être et Créateurs",
-    "startDate": "2026-04-04T10:00:00+02:00",
-    "endDate": "2026-04-05T18:00:00+02:00",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": {
-      "@type": "Place",
-      "name": "Salle de la Ferme et Château",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Nogent-le-Roi",
-        "postalCode": "28210",
-        "addressCountry": "FR"
-      }
-    },
-    "image": ["https://bridgeflowfolk.github.io/Salon/preview.jpg"],
-    "description": "Salon intergénérationnel bien-être avec 38 exposants, ateliers, conférences et massages. Entrée gratuite.",
-    "organizer": {
-      "@type": "Organization",
-      "name": "Bridge & Flow Folk",
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Salon Bien-Être et Créateurs",
+  "startDate": "2026-04-04T10:00:00+02:00",
+  "endDate": "2026-04-05T18:00:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+
+  "location": {
+    "@type": "Place",
+    "name": "Salle de la Ferme et Château",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nogent-le-Roi",
+      "postalCode": "28210",
+      "addressCountry": "FR"
+    }
+  },
+
+  "image": [
+    "https://bridgeflowfolk.github.io/Salon/preview.jpg"
+  ],
+
+  "description": "Salon intergénérationnel bien-être avec 38 exposants, ateliers, conférences et massages. Entrée gratuite + tombola avec lots à gagner.",
+
+  "organizer": {
+    "@type": "Organization",
+    "name": "Bridge & Flow Folk",
+    "url": "https://bridgeflowfolk.github.io/Salon/"
+  },
+
+  "performer": {
+    "@type": "Organization",
+    "name": "Bridge & Flow Folk"
+  },
+
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Entrée salon",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01T00:00:00+01:00",
       "url": "https://bridgeflowfolk.github.io/Salon/"
     },
-    "offers": {
+    {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR"
+      "name": "Billet de tombola",
+      "price": "2",
+	  "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-03-01T00:00:00+01:00",
+      "validThrough": "2026-04-04T23:59:00+02:00",
+      "url": "https://www.helloasso.com/associations/bridge-and-flow-folk/evenements/tombola"
     }
-  }
-  </script>
+  ]
+}
+</script>
 
   <!-- Structured Data : Organization -->
   <script type="application/ld+json">
