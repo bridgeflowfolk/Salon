@@ -100,7 +100,7 @@ body::before {
 /* ── CONTENU ── */
 main {
   position:relative; z-index:1;
-  padding: 6rem 1.5rem 3rem;
+  padding: 9rem 1.5rem 3rem;
   max-width:900px; margin:0 auto;
 }
 
