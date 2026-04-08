@@ -170,32 +170,51 @@
 </head>
 <body>
   <nav class="nav-principale">
-    <a href="index.html" class="nav-logo">
-      <img src="logo-sansFond.png" alt="Logo Bridge & Flow Folk"
-        style="width:90px; height:90px; object-fit:contain; flex-shrink:0; margin-right:8px;" />
-    </a>
+    <a href="index.html" class="nav-logo"><img 
+			src="logo-sansFond.png" 
+			alt="Logo Bridge & Flow Folk" 
+			style="width:90px; height:90px; object-fit:contain; flex-shrink:0; margin-right:8px;"
+		  /></a>
+
+    <!-- Nav desktop -->
     <div class="nav-liens">
       <a href="index.html">Accueil</a>
-      <a href="programme.html">Programme</a>
-      <a href="tombola.html">Tombola</a>
-      <a href="savon.html">Savons</a>
-      <a href="buvette.html">Buvette</a>
-      <a href="foodtruck.html" class="actif">Food Truck</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="apropos.html">À propos</a>
+
+      <!-- Dropdown "Le Salon" -->
+      <div class="nav-groupe" id="groupe-salon">
+        <button class="nav-groupe-btn" id="btn-salon" aria-expanded="false" aria-haspopup="true">
+          Le Salon <span class="chevron" aria-hidden="true"></span>
+        </button>
+        <div class="nav-dropdown" id="dropdown-salon" role="menu">
+          <a href="programme.html" role="menuitem">Programme</a>
+          <a href="tombola.html" role="menuitem">Tombola</a>
+          <a href="buvette.html" role="menuitem">Buvette</a>
+          <a href="foodtruck.html" role="menuitem">Food truck</a>
+		  <a href="galerie.html" role="menuitem">Galerie</a>
+          <a href="savon.html" role="menuitem">Savons</a>
+        </div>
       </div>
-      <button class="nav-burger" onclick="toggleMenu()">☰</button>
-    </nav>
-    <div class="nav-mobile" id="navMobile">
-      <a href="index.html" onclick="toggleMenu()">🏠 Accueil</a>
-      <a href="programme.html" onclick="toggleMenu()">📅 Programme</a>
-      <a href="tombola.html" onclick="toggleMenu()">🎟️ Tombola</a>
-      <a href="savon.html" onclick="toggleMenu()">🧼 Savons</a>
-      <a href="buvette.html" onclick="toggleMenu()">☕ Buvette</a>
-      <a href="foodtruck.html" onclick="toggleMenu()">🚚 Food Truck</a>
-      <a href="galerie.html" onclick="toggleMenu()">📸 Galerie</a>
-      <a href="apropos.html" onclick="toggleMenu()">🌿 À propos</a>
+
+      <a href="presse.html">Presse</a>
+      <a href="apropos.html">À propos</a>
     </div>
+
+    <!-- Burger mobile (même id que index.html) -->
+    <button class="nav-burger" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+  </nav>
+
+  <!-- Nav mobile dépliable -->
+  <nav class="nav-mobile" id="navMobile" aria-label="Menu mobile">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="programme.html">📅 Programme</a>
+    <a href="tombola.html">🎟 Tombola</a>
+    <a href="buvette.html">☕ Buvette</a>
+    <a href="foodtruck.html" class="actif">🚚 Food truck</a>
+    <a href="savon.html">🧼 Savons</a>
+	<a href="galerie.html">📸 Galerie</a>
+    <a href="presse.html">📰 Presse</a>
+    <a href="apropos.html">🌿 À propos</a>
+  </nav>
 
   <main>
     <div class="hero anime" style="animation-delay:0.2s">
@@ -384,6 +403,49 @@
       document.getElementById(id).classList.add('visible');
       btn.classList.add('actif');
     }
+  </script>
+  <!-- ── DROPDOWN "Le Salon" ── -->
+  <script>
+    const btnSalon    = document.getElementById("btn-salon");
+    const ddSalon     = document.getElementById("dropdown-salon");
+
+    btnSalon.addEventListener("click", function(e) {
+      e.stopPropagation();
+      const ouvert = ddSalon.classList.toggle("ouvert");
+      btnSalon.classList.toggle("ouvert", ouvert);
+      btnSalon.setAttribute("aria-expanded", ouvert);
+    });
+
+    // Fermeture au clic extérieur
+    document.addEventListener("click", function() {
+      ddSalon.classList.remove("ouvert");
+      btnSalon.classList.remove("ouvert");
+      btnSalon.setAttribute("aria-expanded", "false");
+    });
+
+    // Fermeture à Escape
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        ddSalon.classList.remove("ouvert");
+        btnSalon.classList.remove("ouvert");
+        btnSalon.setAttribute("aria-expanded", "false");
+        btnSalon.focus();
+      }
+    });
+  </script>
+
+  <!-- ── ANIMATIONS AU SCROLL ── -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = "glisser-haut 0.7s ease forwards";
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll(".anime").forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

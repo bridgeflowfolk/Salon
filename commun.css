@@ -263,6 +263,7 @@ footer {
   font-family: 'Josefin Sans', sans-serif;
   padding: 0;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 .nav-groupe-btn:hover { color: var(--terre); }
 
@@ -273,6 +274,7 @@ footer {
   transform: rotate(45deg);
   transition: transform 0.2s;
   margin-top: -2px;
+  display: inline-block;
 }
 .nav-groupe-btn.ouvert .chevron {
   transform: rotate(-135deg);
@@ -292,7 +294,7 @@ footer {
   padding: 0.75rem 0;
   min-width: 160px;
   box-shadow: 0 8px 24px rgba(44,44,58,0.08);
-  z-index: 101;
+  z-index: 200;
 }
 .nav-dropdown.ouvert { display: block; }
 
@@ -305,6 +307,7 @@ footer {
   color: var(--nuit);
   text-decoration: none;
   transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
 }
 .nav-dropdown a:hover {
   background: rgba(201,169,110,0.1);
