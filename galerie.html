@@ -193,23 +193,52 @@
     function toggleMenu(){ document.getElementById("navMobile").classList.toggle("ouvert"); }
 
     // --- LISTE DES PHOTOS ---
-    // Change ces noms par tes vrais fichiers présents dans le dossier photos/
-    const listeNomsPhotos = "affiche.jpg, affiche2.jpg"; 
-    const dossier = "photos/";
-    const photosTab = listeNomsPhotos.split(',').map(n => n.trim()).filter(n => n !== "");
+    // 1. On utilise un tableau [] au lieu d'une chaîne ""
+    // C'est beaucoup plus facile à lire et on évite les erreurs de virgules/espaces
+    const photosTab = [
+        "affiche.jpg", "affiche2.jpg", "1000030182.jpg", "1000030273.jpg", 
+        "1000030277.jpg", "1000030282.jpg", "1000030287.jpg", "1000030291.jpg", 
+        "1000030293.jpg", "1000030297.jpg", "1000030299.jpg", "1000030302.jpg", 
+        "1000030305.jpg", "1000030314.jpg", "1000030318.jpg", "1000030320.jpg", 
+        "1000030328.jpg", "1000030545.jpg", "1000030550.jpg", "1000030551.jpg",
+        "1000030552.jpg", "1000030554.jpg", "1000030679.jpg", "1000030680.jpg", 
+        "1000030530.jpg", "1000030531.jpg"
+    ];
     
+    const dossier = "photos/";
     let indexActuel = 0;
-
+    
     function genererGalerie() {
-      const conteneur = document.getElementById('conteneurGalerie');
-      photosTab.forEach((nom, index) => {
-        const carte = document.createElement('div');
-        carte.className = 'photo-carte';
-        carte.style.animationDelay = (0.2 + (index * 0.08)) + "s";
-        carte.onclick = () => ouvrirZoom(index);
-        carte.innerHTML = `<div class="img-container"><img src="${dossier + nom}" alt="BFF Photo" loading="lazy"></div>`;
-        conteneur.appendChild(carte);
-      });
+        const conteneur = document.getElementById('conteneurGalerie');
+        if (!conteneur) return; // Sécurité : on vérifie que l'élément existe
+    
+        // On vide le conteneur avant de générer (au cas où)
+        conteneur.innerHTML = "";
+    
+        // Utilisation d'un DocumentFragment pour de meilleures performances au chargement
+        const fragment = document.createDocumentFragment();
+    
+        photosTab.forEach((nom, index) => {
+            const carte = document.createElement('div');
+            carte.className = 'photo-carte';
+            
+            // Animation progressive
+            carte.style.animationDelay = `${0.2 + (index * 0.08)}s`;
+            
+            // Gestion du clic
+            carte.onclick = () => ouvrirZoom(index);
+    
+            // Structure HTML interne
+            carte.innerHTML = `
+                <div class="img-container">
+                    <img src="${dossier}${nom}" alt="Photo ${index + 1}" loading="lazy">
+                </div>
+            `;
+            
+            fragment.appendChild(carte);
+        });
+    
+        conteneur.appendChild(fragment);
     }
 
     function ouvrirZoom(index) {
@@ -217,26 +246,41 @@
       majLightbox();
       document.getElementById('lightbox').classList.add('actif');
     }
-
+    
     function majLightbox() {
       const img = document.getElementById('imgZoom');
       const compteur = document.getElementById('compteur');
-      img.src = dossier + photosTab[indexActuel];
-      compteur.innerText = `${indexActuel + 1} / ${photosTab.length}`;
+      if (img) img.src = dossier + photosTab[indexActuel];
+      if (compteur) compteur.innerText = `${indexActuel + 1} / ${photosTab.length}`;
     }
-
-    function photoSuivante(e) { e.stopPropagation(); indexActuel = (indexActuel + 1) % photosTab.length; majLightbox(); }
-    function photoPrecedente(e) { e.stopPropagation(); indexActuel = (indexActuel - 1 + photosTab.length) % photosTab.length; majLightbox(); }
-    function fermerZoom() { document.getElementById('lightbox').classList.remove('actif'); }
-
+    
+    function photoSuivante(e) { 
+      if (e) e.stopPropagation(); 
+      indexActuel = (indexActuel + 1) % photosTab.length; 
+      majLightbox(); 
+    }
+    
+    function photoPrecedente(e) { 
+      if (e) e.stopPropagation(); 
+      indexActuel = (indexActuel - 1 + photosTab.length) % photosTab.length; 
+      majLightbox(); 
+    }
+    
+    function fermerZoom() { 
+      document.getElementById('lightbox').classList.remove('actif'); 
+    }
+    
+    // Écouteur clavier
     document.addEventListener('keydown', (e) => {
-      if (!document.getElementById('lightbox').classList.contains('actif')) return;
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox || !lightbox.classList.contains('actif')) return;
+    
       if (e.key === "ArrowRight") photoSuivante(e);
       if (e.key === "ArrowLeft") photoPrecedente(e);
       if (e.key === "Escape") fermerZoom();
     });
-
-    window.onload = genererGalerie;
+    
+    window.addEventListener('load', genererGalerie);
   </script>
 </body>
 </html>
