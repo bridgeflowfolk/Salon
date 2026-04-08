@@ -64,14 +64,22 @@ body::before {
 }
 
 .nav-mobile {
-  display:none; flex-direction:column;
-  position:fixed; top:56px; left:0; right:0; z-index:99;
-  background:rgba(245,240,232,0.97);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(201,169,110,0.2);
-  padding:1rem 2rem;
-  gap:1rem;
+  display: none; 
+  flex-direction: column;
+  position: fixed; 
+  /* Correction : on descend le menu sous le logo (90px + padding) */
+  top: 108px; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; /* Pour qu'il prenne toute la hauteur restante */
+  z-index: 99;
+  background: rgba(245,240,232,0.97);
+  backdrop-filter: blur(12px);
+  padding: 1rem 2rem 2rem;
+  gap: 0.5rem;
+  overflow-y: auto; /* Permet de scroller DANS le menu si la liste est longue */
 }
+
 .nav-mobile.ouvert { display:flex; }
 .nav-mobile a {
   font-size:0.75rem; letter-spacing:0.15em;
@@ -82,7 +90,11 @@ body::before {
 
 @media(max-width:640px) {
   .nav-liens { display:none; }
-  .nav-burger { display:block; }
+  .nav-burger { 
+    display:block; 
+    padding: 10px; /* Zone de clic plus large */
+    z-index: 101; /* Pour être sûr qu'il reste au-dessus */
+  }
 }
 
 /* ── CONTENU ── */
