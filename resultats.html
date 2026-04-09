@@ -9,24 +9,20 @@
   <link rel="stylesheet" href="commun.css" />
   <style>
     /* ─── Styles spécifiques aux résultats ─── */
-    
-    .hero { margin-bottom: 2rem; }
     .hero-tirage-info {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--terre);
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       display: block;
-      opacity: 0.8;
+      font-weight: 400;
     }
 
     .search-container {
       margin: 3rem auto 2rem;
       text-align: center;
       max-width: 500px;
-      opacity: 0;
-      animation: glisser-haut 0.7s ease forwards 0.5s;
     }
 
     .search-input {
@@ -36,10 +32,8 @@
       border: 1px solid rgba(201, 169, 110, 0.4);
       background: rgba(255, 255, 255, 0.5);
       font-family: 'Josefin Sans', sans-serif;
-      color: var(--nuit);
       outline: none;
       transition: all 0.3s;
-      font-size: 0.9rem;
     }
 
     .search-input:focus {
@@ -48,165 +42,97 @@
       box-shadow: 0 10px 25px rgba(201, 169, 110, 0.15);
     }
 
-    /* ─── Nouveau Podium Moderne ─── */
+    /* ─── Podium Moderne ─── */
     .podium-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-bottom: 4rem;
-      opacity: 0;
-      animation: glisser-haut 0.8s ease forwards 0.6s;
     }
 
     .podium-carte {
       background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 3rem 1.5rem 2rem;
+      border-radius: 24px;
+      padding: 3.5rem 1.5rem 2rem;
       text-align: center;
       position: relative;
-      transition: all 0.4s ease;
-      overflow: hidden;
+      transition: transform 0.4s;
       border: 1px solid rgba(255,255,255,0.3);
+      display: flex;
+      flex-direction: column;
     }
 
-    .podium-carte:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    }
+    .podium-carte:hover { transform: translateY(-10px); }
 
     .rank-tag {
       position: absolute;
-      top: 1.5rem;
-      left: 50%;
+      top: 1.5rem; left: 50%;
       transform: translateX(-50%);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--nuit);
       padding: 0.4rem 1.2rem;
       border-radius: 100px;
       font-weight: 600;
     }
 
-    /* Accents Premier Lot */
-    .podium-carte.premier {
-      box-shadow: 0 10px 30px rgba(201, 169, 110, 0.15);
-      border: 1px solid var(--or);
-    }
+    .podium-carte.premier { border: 1.5px solid var(--or); box-shadow: 0 15px 35px rgba(201,169,110,0.2); }
     .podium-carte.premier .rank-tag { background: var(--or); color: #fff; }
-    .podium-carte.premier .gagnant-info { color: var(--or); font-weight: 600; }
+    
+    .podium-carte.deuxieme { border: 1.5px solid #bdc3c7; }
+    .podium-carte.deuxieme .rank-tag { background: #bdc3c7; color: #fff; }
 
-    /* Accents Deuxième Lot */
-    .podium-carte.deuxieme {
-      border: 1px solid rgba(160, 132, 92, 0.5); /* version terre désaturée */
-    }
-    .podium-carte.deuxieme .rank-tag { background: #e8e4e0; color: #666; border: 1px solid #ccc;}
-    .podium-carte.deuxieme .gagnant-info { color: var(--terre); font-weight: 600; }
-
-    /* Accents Troisième Lot */
-    .podium-carte.troisieme {
-      border: 1px solid rgba(201, 120, 138, 0.5); /* version lotus */
-    }
+    .podium-carte.troisieme { border: 1.5px solid var(--lotus); }
     .podium-carte.troisieme .rank-tag { background: var(--lotus); color: #fff; }
-    .podium-carte.troisieme .gagnant-info { color: var(--lotus); font-weight: 600; }
 
-    .prize-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 300;
-      line-height: 1.2;
-      color: var(--nuit);
-      margin: 1rem 0;
-    }
+    .prize-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin: 1rem 0 0.5rem; color: var(--nuit); }
+    .prize-desc { font-size: 0.85rem; color: var(--terre); font-style: italic; margin-bottom: 1.5rem; flex-grow: 1; }
 
-    .partner-desc {
-      font-size: 0.75rem;
-      color: var(--terre);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: block;
-      margin-bottom: 2rem;
-    }
+    .winner-box { background: rgba(255,255,255,0.6); padding: 1rem; border-radius: 15px; }
+    .winner-name { display: block; font-weight: 600; color: var(--sauge); font-size: 0.95rem; }
+    .winner-date { display: block; font-size: 0.7rem; color: #999; margin-top: 5px; text-transform: uppercase; }
 
-    .winner-block {
-      background: rgba(255,255,255,0.6);
-      padding: 1.2rem;
-      border-radius: 15px;
-      margin-top: auto;
-    }
+    /* ─── Tableau Complet ─── */
+    .table-wrapper { overflow-x: auto; }
+    .tableau-resultats { width: 100%; border-collapse: separate; border-spacing: 0 0.6rem; }
+    .tableau-resultats th { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terre); padding: 1rem; text-align: left; border-bottom: 1px solid rgba(201,169,110,0.2); }
+    .lot-ligne { background: rgba(255, 255, 255, 0.4); transition: background 0.2s; }
+    .lot-ligne:hover { background: rgba(255, 255, 255, 0.8); }
+    .lot-ligne td { padding: 1.2rem 1rem; font-size: 0.85rem; vertical-align: middle; }
+    
+    .col-num { font-weight: 600; color: var(--or); width: 50px; text-align: center; }
+    .col-lot { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.2; width: 25%; }
+    .col-desc { font-size: 0.8rem; color: var(--nuit); opacity: 0.8; width: 25%; }
+    .col-partenaire { font-size: 0.7rem; text-transform: uppercase; color: var(--terre); letter-spacing: 0.05em; width: 15%; }
+    .col-gagnant { font-weight: 600; color: var(--sauge); width: 15%; }
+    .col-valeur { font-weight: 400; color: var(--terre); width: 10%; }
+    .col-remise { font-size: 0.7rem; color: #888; text-transform: uppercase; width: 10%; }
 
-    .winner-label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #999;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .gagnant-info { font-size: 0.9rem; }
-
-    /* ─── Styles Tableau ─── */
-    .tableau-resultats {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .tableau-resultats th {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--terre);
-      padding: 1.2rem;
-      text-align: left;
-    }
-
-    .lot-ligne {
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(5px);
-      transition: transform 0.2s;
-    }
-
-    .lot-ligne:hover {
-      transform: scale(1.01) translateY(-2px);
-      background: rgba(255, 255, 255, 0.7);
-    }
-
-    .lot-ligne td {
-      padding: 1.2rem;
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(201, 169, 110, 0.1);
-      border-bottom: 1px solid rgba(201, 169, 110, 0.1);
-    }
-
-    .lot-num { font-weight: 600; color: var(--or); width: 60px; text-align: center; }
-    .lot-nom { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.2;}
-    .lot-partenaire { font-size: 0.7rem; text-transform: uppercase; color: var(--terre); display: block; margin-top: 3px; letter-spacing: 0.05em;}
-    .gagnant-nom { font-weight: 600; color: var(--sauge); }
-    .valeur-badge { font-size: 0.8rem; color: var(--terre); font-weight: 400; opacity: 0.9; white-space: nowrap;}
-
+    @media(max-width: 900px) { .podium-container { grid-template-columns: 1fr; } }
     @media(max-width: 768px) {
-      .podium-container { grid-template-columns: 1fr; gap: 1.5rem; }
-    }
-
-    @media(max-width: 640px) {
       .tableau-resultats thead { display: none; }
-      .lot-ligne td { display: block; text-align: center; border: none; padding: 0.8rem; }
-      .lot-ligne { margin-bottom: 1.5rem; display: block; padding: 1.5rem; border-radius: 20px; }
+      .lot-ligne { display: block; padding: 1.5rem; margin-bottom: 1rem; border-radius: 15px; text-align: center; }
+      .lot-ligne td { display: block; width: 100%; padding: 0.3rem 0; border: none; }
+      .col-lot { font-size: 1.3rem; }
+      .col-num::before { content: "Lot n°"; margin-right: 5px; }
     }
   </style>
 </head>
 <body>
+
   <nav class="nav-principale">
-    <a href="index.html" class="nav-logo">
-      <img src="logo-sansFond.png" alt="Logo" style="width:90px; height:90px; object-fit:contain;">
-    </a>
+    <a href="index.html" class="nav-logo"><img 
+			src="logo-sansFond.png" 
+			alt="Logo Bridge & Flow Folk" 
+			style="width:90px; height:90px; object-fit:contain; flex-shrink:0; margin-right:8px;"
+		  /></a>
+
+    <!-- Nav desktop -->
     <div class="nav-liens">
       <a href="index.html">Accueil</a>
+
+      <!-- Dropdown "Le Salon" -->
       <div class="nav-groupe" id="groupe-salon">
         <button class="nav-groupe-btn" id="btn-salon" aria-expanded="false" aria-haspopup="true">
           Le Salon <span class="chevron" aria-hidden="true"></span>
@@ -216,60 +142,70 @@
           <a href="tombola.html" role="menuitem">Tombola</a>
           <a href="buvette.html" role="menuitem">Buvette</a>
           <a href="foodtruck.html" role="menuitem">Food truck</a>
-          <a href="galerie.html" role="menuitem">Galerie</a>
+		  <a href="galerie.html" role="menuitem">Galerie</a>
           <a href="savon.html" role="menuitem">Savons</a>
         </div>
       </div>
+
       <a href="presse.html">Presse</a>
       <a href="apropos.html">À propos</a>
     </div>
+
+    <!-- Burger mobile (même id que index.html) -->
     <button class="nav-burger" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
   </nav>
 
+  <!-- Nav mobile dépliable -->
   <nav class="nav-mobile" id="navMobile" aria-label="Menu mobile">
     <a href="index.html">🏠 Accueil</a>
     <a href="programme.html">📅 Programme</a>
     <a href="tombola.html">🎟 Tombola</a>
-    <a href="galerie.html">📸 Galerie</a>
+    <a href="buvette.html">☕ Buvette</a>
+    <a href="foodtruck.html" class="actif">🚚 Food truck</a>
+    <a href="savon.html">🧼 Savons</a>
+	<a href="galerie.html">📸 Galerie</a>
+    <a href="presse.html">📰 Presse</a>
     <a href="apropos.html">🌿 À propos</a>
   </nav>
+
 
   <main>
     <div class="hero anime">
       <span class="hero-tag">Édition Avril 2026</span>
       <h1>Résultats<br><em>Tombola</em></h1>
-      <p class="hero-sub">Félicitations aux gagnants ! Un total de 2 933 € de lots ont été distribués.</p>
-      <span class="hero-tirage-info">Tirage le 5 Avril à 16h30</span>
+	  <p class="hero-sub">Félicitations aux gagnants ! Un total de <strong>2 933 €</strong> de lots ont été distribués.</p>
+      <p class="hero-sub">Merci pour votre générosité. <strong>1 002 €</strong> récoltés pour la Ligue contre le Cancer.</p>
+      <span class="hero-tirage-info">Tirage effectué le 5 Avril à 16h30</span>
     </div>
 
     <div class="podium-container">
       <div class="podium-carte premier">
-        <span class="rank-tag">RANG #1 — 175 €</span>
-        <div class="prize-title">Nuitée, Spa<br>& Brunch</div>
-        <span class="partner-desc">Chez Aurelia</span>
-        <div class="winner-block">
-          <span class="winner-label">Gagnant</span>
-          <span class="gagnant-info">Monsieur O. P (Ticket 3 vert)</span>
+        <span class="rank-tag">1er Lot — 175€</span>
+        <h3 class="prize-title">Nuitée, Spa & Brunch</h3>
+        <p class="prize-desc">Bon cadeau (nuitée, jacuzzi brunch) chez Chez Aurelia.</p>
+        <div class="winner-box">
+          <span class="winner-name">Monsieur O. P (T. 3 vert)</span>
+          <span class="winner-date">Remis le 08/04/26 </span>
         </div>
       </div>
-      
+
       <div class="podium-carte deuxieme">
-        <span class="rank-tag">RANG #2 — 150 €</span>
-        <div class="prize-title">Nettoyage complet automobile</div>
-        <span class="partner-desc">BH Clean</span>
-        <div class="winner-block">
-          <span class="winner-label">Gagnant</span>
-          <span class="gagnant-info">REMIS SUR PLACE</span>
+        <span class="rank-tag">2e Lot — 150€</span>
+        <h3 class="prize-title">Nettoyage Automobile</h3>
+        <p class="prize-desc">Formule complète de nettoyage chez BH CLEAN.</p>
+        <div class="winner-box">
+          <span class="winner-name">Gagnant sur place</span>
+          <span class="winner-date">Remis le 05/04/26 </span>
         </div>
       </div>
-      
+
       <div class="podium-carte troisieme">
-        <span class="rank-tag">RANG #3 — 110 €</span>
-        <div class="prize-title">Gîte / Bon cadeau</div>
-        <span class="partner-desc">Chez Aurelia</span>
-        <div class="winner-block">
-          <span class="winner-label">Gagnant</span>
-          <span class="gagnant-info">M. J.S (Ticket 50 rouge)</span>
+        <span class="rank-tag">3e Lot — 110€</span>
+        <h3 class="prize-title">Bon Cadeau Gîte</h3>
+        <p class="prize-desc">Bon cadeau pour un gîte chez Chez Aurelia.</p>
+        <div class="winner-box">
+          <span class="winner-name">M J.S (50 rouge)</span>
+          <span class="winner-date">Remis le 08/04/26 </span>
         </div>
       </div>
     </div>
@@ -277,118 +213,150 @@
     <div class="sep"><div class="sep-l"></div><div class="sep-d"></div><div class="sep-d" style="background:var(--lotus)"></div><div class="sep-d"></div><div class="sep-r"></div></div>
 
     <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Rechercher votre nom ou un lot...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un gagnant, un lot ou un ticket...">
     </div>
 
-    <div class="carte anime">
+    <div class="table-wrapper carte anime">
       <table class="tableau-resultats">
         <thead>
           <tr>
             <th>N°</th>
-            <th>Lot & Partenaire</th>
+            <th>Lot</th>
+            <th>Description</th>
+            <th>Partenaire</th>
             <th>Gagnant</th>
             <th>Valeur</th>
+            <th>Remise</th>
           </tr>
         </thead>
         <tbody id="resultatsTable">
-          <tr class="lot-ligne"><td class="lot-num">4</td><td class="lot-nom">Bon cadeau Jardinier<span class="lot-partenaire">MP ESPACES VERTS</span></td><td class="gagnant-nom">Mme S. F. (86-1 rouge)</td><td class="valeur-badge">98,40 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">5</td><td class="lot-nom">Bon cadeau Jardinier<span class="lot-partenaire">MP ESPACES VERTS</span></td><td class="gagnant-nom">REMIS SUR PLACE</td><td class="valeur-badge">98,40 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">6</td><td class="lot-nom">Une séance d'hypnose<span class="lot-partenaire">Adeline GRANDJEAN LANGLOIS</span></td><td class="gagnant-nom">REMIS SUR PLACE</td><td class="valeur-badge">90,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">7</td><td class="lot-nom">Lot prévention vélo/trottinette<span class="lot-partenaire">Boutique Cycliste Nogentaise</span></td><td class="gagnant-nom">Mme C.Y. (33 rouge)</td><td class="valeur-badge">89,85 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">8</td><td class="lot-nom">Atelier "Portrait de soi créatif"<span class="lot-partenaire">Gaelle Levesque</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">80,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">9</td><td class="lot-nom">Massage au bois tibétains<span class="lot-partenaire">Laurence GUILLOUX</span></td><td class="gagnant-nom">Mme J. G (69-1 vert)</td><td class="valeur-badge">80,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">10</td><td class="lot-nom">5 entrées Bowling<span class="lot-partenaire">Le Looping DREUX</span></td><td class="gagnant-nom">Mme M.L (41-1 orange)</td><td class="valeur-badge">40,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">11</td><td class="lot-nom">5 entrées Bowling<span class="lot-partenaire">Le Looping DREUX</span></td><td class="gagnant-nom">Mme C.Y (19 orange)</td><td class="valeur-badge">40,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">12</td><td class="lot-nom">Lunettes solaires - Axe prévention<span class="lot-partenaire">ATOL Boutique Nogentaise</span></td><td class="gagnant-nom">Mme C.C (42 jaune)</td><td class="valeur-badge">79,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">13</td><td class="lot-nom">Table offerte pour un duo<span class="lot-partenaire">Capucin Gourmand</span></td><td class="gagnant-nom">MUH (62-1 rouge)</td><td class="valeur-badge">76,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">14</td><td class="lot-nom">Séance de réflexologie<span class="lot-partenaire">Les Vertus de Liane</span></td><td class="gagnant-nom">Mme C.C (31 jaune)</td><td class="valeur-badge">65,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">15</td><td class="lot-nom">Séance de LaHoChi<span class="lot-partenaire">Angélique LOURDIN</span></td><td class="gagnant-nom">Mme C.C (30 jaune)</td><td class="valeur-badge">60,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">16</td><td class="lot-nom">Massage Ayurvédique des mains<span class="lot-partenaire">Aude MORNAS</span></td><td class="gagnant-nom">REMIS SUR PLACE</td><td class="valeur-badge">60,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">17</td><td class="lot-nom">Atelier créatif séance 2h<span class="lot-partenaire">Carole CORDIER</span></td><td class="gagnant-nom">REMIS SUR PLACE</td><td class="valeur-badge">60,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">18</td><td class="lot-nom">Thème numérologique complet<span class="lot-partenaire">Karine Loizon-K Energetik</span></td><td class="gagnant-nom">REMIS SUR PLACE</td><td class="valeur-badge">60,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">19</td><td class="lot-nom">Séance de relaxation<span class="lot-partenaire">Souffle d'Ange</span></td><td class="gagnant-nom">REMIS SUR PLACE</td><td class="valeur-badge">60,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">20</td><td class="lot-nom">Tirage sujet au choix<span class="lot-partenaire">Emelyne THOUMYRE</span></td><td class="gagnant-nom">REMIS SUR PLACE</td><td class="valeur-badge">60,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">21</td><td class="lot-nom">Tirage énergétique visio/présentiel<span class="lot-partenaire">Emelyne THOUMYRE</span></td><td class="gagnant-nom">M J.S (44 rouge)</td><td class="valeur-badge">60,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">22</td><td class="lot-nom">Bouquet de fondants parfumés<span class="lot-partenaire">Audrey DAVID</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">50,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">23</td><td class="lot-nom">Cadre surprise<span class="lot-partenaire">Charlotte BINET-CHATLOVE</span></td><td class="gagnant-nom">Mme C. C (En cours)</td><td class="valeur-badge">50,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">24</td><td class="lot-nom">Essai simulateur équestre<span class="lot-partenaire">Veronique CHERUBIN</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">50,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">25</td><td class="lot-nom">Séance sophrologie enfant<span class="lot-partenaire">Adeline GRANDJEAN LANGLOIS</span></td><td class="gagnant-nom">Mme C.C (18 jaune)</td><td class="valeur-badge">50,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">26</td><td class="lot-nom">Coffret produit corps & cheveux<span class="lot-partenaire">Laurence JOBIC</span></td><td class="gagnant-nom">Mme WKF</td><td class="valeur-badge">50,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">27</td><td class="lot-nom">Bilan diététique (1h)<span class="lot-partenaire">Francoise POIGNET</span></td><td class="gagnant-nom">Mme C. C (8 bleu)</td><td class="valeur-badge">50,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">28</td><td class="lot-nom">Séance tirage de cartes (1h)<span class="lot-partenaire">Isabelle MOREAU</span></td><td class="gagnant-nom">Mme L. C (3 jaune)</td><td class="valeur-badge">50,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">29</td><td class="lot-nom">Massage bien-être 30min<span class="lot-partenaire">Martine BARON</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">45,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">30</td><td class="lot-nom">Réflexologie plantaire 30 min<span class="lot-partenaire">Julien Lei Wang</span></td><td class="gagnant-nom">Mme L. C (7 bleu)</td><td class="valeur-badge">45,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">31</td><td class="lot-nom">Séance de massage 30min<span class="lot-partenaire">Julien Lei Wang</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">45,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">32</td><td class="lot-nom">Crème Aloe vera SPF 20<span class="lot-partenaire">Forever (I. Amara Plichon)</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">44,95 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">33</td><td class="lot-nom">2 places de karting<span class="lot-partenaire">Battlekart</span></td><td class="gagnant-nom">Mme E.A (36 rouge)</td><td class="valeur-badge">44,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">34</td><td class="lot-nom">Bon Spa 2h<span class="lot-partenaire">La Rumba</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">42,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">35</td><td class="lot-nom">Massage relaxant 30mn<span class="lot-partenaire">Claudina</span></td><td class="gagnant-nom">MS. A (67-1 vert)</td><td class="valeur-badge">40,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">36</td><td class="lot-nom">Massage relaxant 30mn<span class="lot-partenaire">Claudina</span></td><td class="gagnant-nom">Mme D.R (97-1 orange)</td><td class="valeur-badge">40,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">37</td><td class="lot-nom">Kit d'huiles essentielles<span class="lot-partenaire">La Feelylie</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">30,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">38</td><td class="lot-nom">Carte cadeau boutique<span class="lot-partenaire">MA&VA</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">30,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">39</td><td class="lot-nom">Bon d'achat boutique<span class="lot-partenaire">Lapis et Magicae</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">30,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">40</td><td class="lot-nom">Bon d'achat boutique<span class="lot-partenaire">Lapis et Magicae</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">30,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">41</td><td class="lot-nom">Gelée hydratante aloe vera<span class="lot-partenaire">Forever (I. Amara Plichon)</span></td><td class="gagnant-nom">ML.D (33-1 orange)</td><td class="valeur-badge">24,40 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">42</td><td class="lot-nom">Visite famille ferme pédago<span class="lot-partenaire">Veronique CHERUBIN</span></td><td class="gagnant-nom">Mme L.S (14 rouge)</td><td class="valeur-badge">25,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">43</td><td class="lot-nom">Visite famille ferme pédago<span class="lot-partenaire">Veronique CHERUBIN</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">25,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">44</td><td class="lot-nom">Visite famille ferme pédago<span class="lot-partenaire">Veronique CHERUBIN</span></td><td class="gagnant-nom">Mme F. N (95-1 rouge)</td><td class="valeur-badge">25,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">45</td><td class="lot-nom">Visite famille ferme pédago<span class="lot-partenaire">Veronique CHERUBIN</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">25,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">46</td><td class="lot-nom">Visite famille ferme pédago<span class="lot-partenaire">Veronique CHERUBIN</span></td><td class="gagnant-nom">Mme N. M (16 vert)</td><td class="valeur-badge">25,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">47</td><td class="lot-nom">Gelée hydratante aloe vera<span class="lot-partenaire">Forever (I. Amara Plichon)</span></td><td class="gagnant-nom">Mme LEB (33-1 orange)</td><td class="valeur-badge">24,40 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">48</td><td class="lot-nom">Bon cadeau boutique<span class="lot-partenaire">Atelier des Rêves</span></td><td class="gagnant-nom">Mme R. (22 orange)</td><td class="valeur-badge">20,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">49</td><td class="lot-nom">Places de cinéma<span class="lot-partenaire">Ciné Centre</span></td><td class="gagnant-nom">Mme C.C (32 jaune)</td><td class="valeur-badge">20,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">50</td><td class="lot-nom">Bon cadeau fleuriste<span class="lot-partenaire">Reflets de Rosée</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">20,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">51</td><td class="lot-nom">Un bijou créateur<span class="lot-partenaire">Stéphanie PIEL</span></td><td class="gagnant-nom">Mme F. S (88-1 rouge)</td><td class="valeur-badge">20,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">52</td><td class="lot-nom">Livre spécialisé<span class="lot-partenaire">Herve MEYER</span></td><td class="gagnant-nom">Mme LEB. (41-1 vert)</td><td class="valeur-badge">20,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">53</td><td class="lot-nom">Livre de couture<span class="lot-partenaire">La Feelylie</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">19,50 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">54</td><td class="lot-nom">Recueil de poèmes personnalisé<span class="lot-partenaire">Isabelle Paoletti</span></td><td class="gagnant-nom">MS. A (65-1 rouge)</td><td class="valeur-badge">17,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">55</td><td class="lot-nom">Bon coiffure<span class="lot-partenaire">Infinitif</span></td><td class="gagnant-nom">Mme M.L. (54-1 rouge)</td><td class="valeur-badge">15,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">56</td><td class="lot-nom">Lot porte-clés & papeterie<span class="lot-partenaire">Justine HILLIERE</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">15,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">57</td><td class="lot-nom">Le Petit Oracle<span class="lot-partenaire">Laurence luna Luminastro</span></td><td class="gagnant-nom">M. H.U. (62-1 rouge)</td><td class="valeur-badge">15,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">58</td><td class="lot-nom">Bon cadeau boutique<span class="lot-partenaire">Le Destin de Marion</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">15,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">59</td><td class="lot-nom">Bon pour une Pizza<span class="lot-partenaire">Mega Pizza</span></td><td class="gagnant-nom">Mme C. C (40 jaune)</td><td class="valeur-badge">13,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">60</td><td class="lot-nom">Agenda astro perpétuel<span class="lot-partenaire">Laurence luna Luminastro</span></td><td class="gagnant-nom">MAS (57-1 orange)</td><td class="valeur-badge">12,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">61</td><td class="lot-nom">Album photo souvenir<span class="lot-partenaire">Jean-Pierre Photographe</span></td><td class="gagnant-nom">SUR PLACE</td><td class="valeur-badge">10,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">62</td><td class="lot-nom">Un bijou boutique<span class="lot-partenaire">MA&VA</span></td><td class="gagnant-nom">Mme M.N. (15 vert)</td><td class="valeur-badge">10,00 €</td></tr>
-          <tr class="lot-ligne"><td class="lot-num">63</td><td class="lot-nom">Tirage Flash énergétique<span class="lot-partenaire">Emelyne THOUMYRE</span></td><td class="gagnant-nom">Mme C.C (25 jaune)</td><td class="valeur-badge">10,00 €</td></tr>
+          <tr class="lot-ligne"><td class="col-num">1</td><td class="col-lot">Gîte</td><td class="col-desc">Nuitée, jacuzzi &amp; brunch</td><td class="col-partenaire">Chez Aurélia</td><td class="col-gagnant">Monsieur O. P (T. 3 vert)</td><td class="col-valeur">175,00 €</td><td class="col-remise">08/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">2</td><td class="col-lot">Nettoyage auto</td><td class="col-desc">Formule complète</td><td class="col-partenaire">BH CLEAN</td><td class="col-gagnant">Sur place</td><td class="col-valeur">150,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">3</td><td class="col-lot">Gîte</td><td class="col-desc">Bon cadeau</td><td class="col-partenaire">Chez Aurélia</td><td class="col-gagnant">M J.S (50 rouge)</td><td class="col-valeur">110,00 €</td><td class="col-remise">08/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">4</td><td class="col-lot">Jardinier</td><td class="col-desc">Bon cadeau</td><td class="col-partenaire">MP ESPACES VERTS</td><td class="col-gagnant">Mme S. F. (86-1 rouge)</td><td class="col-valeur">98,40 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">5</td><td class="col-lot">Jardinier</td><td class="col-desc">Bon cadeau</td><td class="col-partenaire">MP ESPACES VERTS</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">98,40 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">6</td><td class="col-lot">Sophrologue/hypno</td><td class="col-desc">Une séance d'hypnose</td><td class="col-partenaire">Adeline GRANDJEAN LANGLOIS</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">90,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">7</td><td class="col-lot">Boutique Cycliste</td><td class="col-desc">Lot prévention vélo/trottinette</td><td class="col-partenaire">Nogentaise Cycliste</td><td class="col-gagnant">Mme C.Y. (33 rouge)</td><td class="col-valeur">89,85 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">8</td><td class="col-lot">Coach littéraire</td><td class="col-desc">Atelier portrait de soi (4 pers.)</td><td class="col-partenaire">Gaelle Levesque</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">80,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">9</td><td class="col-lot">Musicothérapeute</td><td class="col-desc">Massage au bois tibétains</td><td class="col-partenaire">Laurence GUILLOUX</td><td class="col-gagnant">Mme J. G (69-1 vert)</td><td class="col-valeur">80,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">10</td><td class="col-lot">Bowling</td><td class="col-desc">5 entrées</td><td class="col-partenaire">Le Looping DREUX</td><td class="col-gagnant">Mme M.L (41-1 orange)</td><td class="col-valeur">40,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">11</td><td class="col-lot">Bowling</td><td class="col-desc">5 entrées</td><td class="col-partenaire">Le Looping DREUX</td><td class="col-gagnant">Mme C.Y (19 orange)</td><td class="col-valeur">40,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">12</td><td class="col-lot">Opticien ATOL</td><td class="col-desc">Lunettes solaires prévention</td><td class="col-partenaire">Boutique Nogentaise</td><td class="col-gagnant">Mme C.C (42 jaune)</td><td class="col-valeur">79,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">13</td><td class="col-lot">Restaurant</td><td class="col-desc">Table offerte pour un duo</td><td class="col-partenaire">Capucin gourmand</td><td class="col-gagnant">M. U. H (62-1 rouge)</td><td class="col-valeur">76,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">14</td><td class="col-lot">Réflexologue</td><td class="col-desc">Séance de réflexologie</td><td class="col-partenaire">Les Vertus de Liane</td><td class="col-gagnant">Mme C.C (31 JAUNE)</td><td class="col-valeur">65,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">15</td><td class="col-lot">Coiffeuse énergétique</td><td class="col-desc">Séance de LaHoChi</td><td class="col-partenaire">Angélique LOURDIN</td><td class="col-gagnant">Mme C.C (30 JAUNE)</td><td class="col-valeur">60,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">16</td><td class="col-lot">Massage Ayurvédique</td><td class="col-desc">Massage des mains</td><td class="col-partenaire">Aude MORNAS</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">60,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">17</td><td class="col-lot">Artiste plasticienne</td><td class="col-desc">Séance 2h atelier créatif</td><td class="col-partenaire">Carole CORDIER</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">60,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">18</td><td class="col-lot">Énergéticienne</td><td class="col-desc">Thème numérologique</td><td class="col-partenaire">K ENERGETIK</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">60,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">19</td><td class="col-lot">Énergéticienne</td><td class="col-desc">Séance de relaxation</td><td class="col-partenaire">Souffle d'Ange</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">60,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">20</td><td class="col-lot">Énergéticienne</td><td class="col-desc">Tirage sujet au choix</td><td class="col-partenaire">Emelyne THOUMYRE</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">60,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">21</td><td class="col-lot">Énergéticienne</td><td class="col-desc">Tirage énergétique 1h</td><td class="col-partenaire">Emelyne THOUMYRE</td><td class="col-gagnant">M J.S (44 rouge)</td><td class="col-valeur">60,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">22</td><td class="col-lot">Créatrice</td><td class="col-desc">Bouquet fondants parfumés</td><td class="col-partenaire">Audrey DAVID</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">50,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">23</td><td class="col-lot">Créatrice</td><td class="col-desc">Cadre surprise</td><td class="col-partenaire">Charlotte BINET-CHATLOVE</td><td class="col-gagnant">Mme C. C</td><td class="col-valeur">50,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">24</td><td class="col-lot">Equi-coach</td><td class="col-desc">Essai simulateur équestre</td><td class="col-partenaire">Veronique CHERUBIN</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">50,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">25</td><td class="col-lot">Sophrologue</td><td class="col-desc">Séance enfant</td><td class="col-partenaire">Adeline GRAND JEAN LANGLOIS</td><td class="col-gagnant">Mme C.C (18 jaune)</td><td class="col-valeur">50,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">26</td><td class="col-lot">Créatrice</td><td class="col-desc">Coffret corps et cheveux</td><td class="col-partenaire">Laurence JOBIC</td><td class="col-gagnant">Mme WKF</td><td class="col-valeur">50,00 €</td><td class="col-remise">08/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">27</td><td class="col-lot">Nutritionniste</td><td class="col-desc">Bilan diététique 1h</td><td class="col-partenaire">Francoise POIGNET</td><td class="col-gagnant">Mme C. C (8 bleu)</td><td class="col-valeur">50,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">28</td><td class="col-lot">Taromancienne</td><td class="col-desc">1h tirage de cartes</td><td class="col-partenaire">Isabelle MOREAU</td><td class="col-gagnant">Mme L. C (3 jaune)</td><td class="col-valeur">50,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">29</td><td class="col-lot">Socio esthéticienne</td><td class="col-desc">Massage de 30min</td><td class="col-partenaire">Martine BARON</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">45,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">30</td><td class="col-lot">Réfléxologue</td><td class="col-desc">Réflexologie plantaire 30mn</td><td class="col-partenaire">Julien Lei Wang</td><td class="col-gagnant">Mme L. C (7 bleu)</td><td class="col-valeur">45,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">31</td><td class="col-lot">Masseur</td><td class="col-desc">Séance de massage 30min</td><td class="col-partenaire">Julien Lei Wang</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">45,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">32</td><td class="col-lot">FOREVER</td><td class="col-desc">Crème Aloe vera SPF 20</td><td class="col-partenaire">Isabelle Amara Plichon</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">44,95 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">33</td><td class="col-lot">Karting</td><td class="col-desc">2 places de kart</td><td class="col-partenaire">Battlekart</td><td class="col-gagnant">Mme E.A (36 rouge)</td><td class="col-valeur">44,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">34</td><td class="col-lot">SPA</td><td class="col-desc">Bon spa 2h</td><td class="col-partenaire">La Rumba</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">42,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">35</td><td class="col-lot">Masseuse</td><td class="col-desc">Massage relaxant 30mn</td><td class="col-partenaire">Claudina</td><td class="col-gagnant">M. S. A (67-1 vert)</td><td class="col-valeur">40,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">36</td><td class="col-lot">Masseuse</td><td class="col-desc">Massage relaxant 30mn</td><td class="col-partenaire">Claudina</td><td class="col-gagnant">Mme D.R (97-1 orange)</td><td class="col-valeur">40,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">37</td><td class="col-lot">Couture</td><td class="col-desc">Kit d'huiles essentielles</td><td class="col-partenaire">La Feelylie</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">30,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">38</td><td class="col-lot">Boutique</td><td class="col-desc">Carte cadeau</td><td class="col-partenaire">MA&VA</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">30,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">39</td><td class="col-lot">Boutique</td><td class="col-desc">Bon d'achat</td><td class="col-partenaire">Lapis et Magicae</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">30,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">40</td><td class="col-lot">Boutique</td><td class="col-desc">Bon d'achat</td><td class="col-partenaire">Lapis et Magicae</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">30,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">41</td><td class="col-lot">Forever</td><td class="col-desc">Gelée hydratante aloe vera</td><td class="col-partenaire">Isabelle Amara Plichon</td><td class="col-gagnant">M. L. D (33-1 orange)</td><td class="col-valeur">24,40 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">42</td><td class="lot-lot">Equi-coach</td><td class="col-desc">Visite famille ferme pédago</td><td class="col-partenaire">Veronique CHERUBIN</td><td class="col-gagnant">Mme L.S (14 rouge)</td><td class="col-valeur">25,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">43</td><td class="lot-lot">Equi-coach</td><td class="col-desc">Visite famille ferme pédago</td><td class="col-partenaire">Veronique CHERUBIN</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">25,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">44</td><td class="lot-lot">Equi-coach</td><td class="col-desc">Visite famille ferme pédago</td><td class="col-partenaire">Veronique CHERUBIN</td><td class="col-gagnant">Mme F. N (95-1 rouge)</td><td class="col-valeur">25,00 €</td><td class="col-remise">08/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">45</td><td class="lot-lot">Equi-coach</td><td class="col-desc">Visite famille ferme pédago</td><td class="col-partenaire">Veronique CHERUBIN</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">25,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">46</td><td class="lot-lot">Equi-coach</td><td class="col-desc">Visite famille ferme pédago</td><td class="col-partenaire">Veronique CHERUBIN</td><td class="col-gagnant">Mme N. M (16 vert)</td><td class="col-valeur">25,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">47</td><td class="col-lot">Forever</td><td class="col-desc">Gelée hydratante aloe vera</td><td class="col-partenaire">Isabelle Amara Plichon</td><td class="col-gagnant">Mme LEB (33-1 orange)</td><td class="col-valeur">24,40 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">48</td><td class="col-lot">Boutique</td><td class="col-desc">Bon cadeau</td><td class="col-partenaire">Atelier des Rêves</td><td class="col-gagnant">Mme R. (22 orange)</td><td class="col-valeur">20,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">49</td><td class="col-lot">Cinéma</td><td class="col-desc">Places de cinéma</td><td class="col-partenaire">Ciné Centre</td><td class="col-gagnant">Mme C.C (32 jaune)</td><td class="col-valeur">20,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">50</td><td class="col-lot">Fleuriste</td><td class="col-desc">Bon cadeau fleuriste</td><td class="col-partenaire">Reflets de Rosée</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">20,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">51</td><td class="col-lot">Créatrice</td><td class="col-desc">Un bijou</td><td class="col-partenaire">Stéphanie PIEL</td><td class="col-gagnant">Mme F. S (88-1 rouge)</td><td class="col-valeur">20,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">52</td><td class="col-lot">Ecrivain</td><td class="col-desc">Livre</td><td class="col-partenaire">Herve MEYER</td><td class="col-gagnant">Mme LEB. (41-1 vert)</td><td class="col-valeur">20,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">53</td><td class="col-lot">Couture</td><td class="col-desc">Livre de couture</td><td class="col-partenaire">La Feelylie</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">19,50 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">54</td><td class="col-lot">Auteure</td><td class="col-desc">Recueil de poèmes personnalisé</td><td class="col-partenaire">Isabelle Paoletti</td><td class="col-gagnant">M. S. A (65-1 rouge)</td><td class="col-valeur">17,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">55</td><td class="col-lot">Coiffeur</td><td class="col-desc">Bon coiffure</td><td class="col-partenaire">Infinitif</td><td class="col-gagnant">Mme M.L. (54-1 rouge)</td><td class="col-valeur">15,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">56</td><td class="col-lot">Créatrice</td><td class="col-desc">Porte-clés, marque-page, crayon</td><td class="col-partenaire">Justine HILLIERE</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">15,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">57</td><td class="col-lot">Astrologue</td><td class="col-desc">Le petit oracle</td><td class="col-partenaire">Laurence luna Luminastro</td><td class="col-gagnant">M. H.U. (62-1 rouge)</td><td class="col-valeur">15,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">58</td><td class="col-lot">Boutique</td><td class="col-desc">Bon cadeau</td><td class="col-partenaire">Le Destin de Marion</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">15,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">59</td><td class="col-lot">Pizzéria</td><td class="col-desc">Une pizza</td><td class="col-partenaire">Mega Pizza</td><td class="col-gagnant">Mme C. C (40 jaune)</td><td class="col-valeur">13,00 €</td><td class="col-remise">EN COURS</td></tr>
+          <tr class="lot-ligne"><td class="col-num">60</td><td class="col-lot">Astrologue</td><td class="col-desc">Agenda astro perpétuel</td><td class="col-partenaire">Laurence luna Luminastro</td><td class="col-gagnant">M. A. S (57-1 orange)</td><td class="col-valeur">12,00 €</td><td class="col-remise">09/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">61</td><td class="col-lot">Photographe</td><td class="col-desc">Album photo</td><td class="col-partenaire">Jean-Pierre Photographe</td><td class="col-gagnant">SUR PLACE</td><td class="col-valeur">10,00 €</td><td class="col-remise">05/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">62</td><td class="col-lot">Boutique</td><td class="col-desc">Bijou</td><td class="col-partenaire">MA&VA</td><td class="col-gagnant">Mme M.N. (15 vert)</td><td class="col-valeur">10,00 €</td><td class="col-remise">10/04/26</td></tr>
+          <tr class="lot-ligne"><td class="col-num">63</td><td class="col-lot">Énergéticienne</td><td class="col-desc">Tirage flash</td><td class="col-partenaire">Emelyne THOUMYRE</td><td class="col-gagnant">Mme C.C (25 jaune)</td><td class="col-valeur">10,00 €</td><td class="col-remise">EN COURS</td></tr>
         </tbody>
       </table>
     </div>
 
     <footer>
-      © 2026 Bridge & Flow Folk · Nogent-le-Roi (28) · 06 18 29 18 73<br>
-      Total des lots : 2 933 € au profit de la Ligue contre le Cancer.
+      © 2026 Bridge & Flow Folk · Nogent-le-Roi (28)<br>
+      Tirage solidaire — 1 002 € reversés à la Ligue contre le Cancer.
     </footer>
   </main>
 
   <script>
-    // Filtrage dynamique des résultats
+    // Recherche dynamique
     document.getElementById('searchInput').addEventListener('keyup', function() {
-      const searchVal = this.value.toLowerCase();
-      const rows = document.querySelectorAll('#resultatsTable tr');
-      
+      let filter = this.value.toLowerCase();
+      let rows = document.querySelectorAll('#resultatsTable tr');
       rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(searchVal) ? '' : 'none';
+        row.style.display = row.innerText.toLowerCase().includes(filter) ? '' : 'none';
       });
     });
 
     function toggleMenu(){ document.getElementById("navMobile").classList.toggle("ouvert"); }
-
-    // Gestion Dropdown Menu
-    const btnSalon = document.getElementById("btn-salon");
-    const ddSalon = document.getElementById("dropdown-salon");
+ </script>
+  <!-- ── DROPDOWN "Le Salon" ── -->
+  <script>
+    const btnSalon    = document.getElementById("btn-salon");
+    const ddSalon     = document.getElementById("dropdown-salon");
 
     btnSalon.addEventListener("click", function(e) {
       e.stopPropagation();
       const ouvert = ddSalon.classList.toggle("ouvert");
       btnSalon.classList.toggle("ouvert", ouvert);
+      btnSalon.setAttribute("aria-expanded", ouvert);
     });
 
-    document.addEventListener("click", () => {
+    // Fermeture au clic extérieur
+    document.addEventListener("click", function() {
       ddSalon.classList.remove("ouvert");
       btnSalon.classList.remove("ouvert");
+      btnSalon.setAttribute("aria-expanded", "false");
     });
+
+    // Fermeture à Escape
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        ddSalon.classList.remove("ouvert");
+        btnSalon.classList.remove("ouvert");
+        btnSalon.setAttribute("aria-expanded", "false");
+        btnSalon.focus();
+      }
+    });
+  </script>
+
+  <!-- ── ANIMATIONS AU SCROLL ── -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = "glisser-haut 0.7s ease forwards";
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll(".anime").forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
