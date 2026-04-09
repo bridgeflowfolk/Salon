@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Salon Bien-Être & Créateurs — 13 Juin 2026 · Nogent-le-Roi | Bridge & Flow Folk</title>
+  <meta name="description" content="Le prochain salon Bien-Être et Créateurs revient le 13 juin 2026 à Nogent-le-Roi. Découvrez l'édition d'avril 2026 et préparez-vous pour le rendez-vous de l'été. Entrée libre !">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bridgeflowfolk.github.io/Salon/" />
+  <meta name="google-site-verification" content="DoJfMer3ESnNXdqjHvuCK0qN9JkDQuiEnxDygBVS-Bo" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="✨ Salon Bien-Être — 13 Juin 2026 · Nogent-le-Roi" />
+  <meta property="og:description" content="Bridge & Flow Folk prépare sa prochaine édition. Retrouvez le bilan d'avril et le teasing de juin." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bridgeflowfolk.github.io/Salon/" />
+  <meta property="og:image" content="https://bridgeflowfolk.github.io/Salon/preview.jpg" />
+  <meta property="fb:app_id" content="966242223397117" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Salon Bien-Être — 13 Juin 2026 · Nogent-le-Roi">
+  <meta name="twitter:description" content="Bridge & Flow Folk · Le prochain rendez-vous intergénérationnel arrive bientôt.">
+  <meta name="twitter:image" content="https://bridgeflowfolk.github.io/Salon/preview.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+
+  <!-- CSS commun -->
+  <link rel="stylesheet" href="commun.css" />
+
+  <!-- Structured Data : Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Bridge & Flow Folk",
+    "url": "https://bridgeflowfolk.github.io/Salon/",
+    "logo": "https://bridgeflowfolk.github.io/Salon/preview.jpg"
+  }
+  </script>
+
+  <style>
+    /* ════════════════════════════════════════
+       VARIABLES & BASE
+    ════════════════════════════════════════ */
+    :root {
+      --or:    #C9A96E;
+      --sauge: #7A9E7E;
+      --lotus: #C9857A;
+      --nuit:  #2C2C3A;
+      --terre: #A0845C;
+    }
+
+    /* ════════════════════════════════════════
+       HERO TEASING
+    ════════════════════════════════════════ */
+    .hero-teasing {
+      text-align: center;
+      padding: 2rem 0 0;
+      opacity: 0;
+      animation: glisser-haut 0.9s ease forwards 0.2s;
+    }
+    .hero-teasing .edition-badge {
+      display: inline-block;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sauge);
+      border: 1px solid var(--sauge);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.8rem;
+      background: rgba(122,158,126,0.08);
+    }
+    .hero-teasing h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--nuit);
+      margin: 0 0 0.5rem;
+    }
+    .hero-teasing h1 em {
+      font-style: italic;
+      color: var(--terre);
+    }
+    .hero-teasing .hero-sub {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(44,44,58,0.5);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ════════════════════════════════════════
+       ANNONCE PRINCIPALE JUIN
+    ════════════════════════════════════════ */
+    .annonce-juin {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(201,169,110,0.35);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: glisser-haut 0.9s ease forwards 0.4s;
+    }
+    .annonce-juin::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(to right, var(--sauge), var(--or), var(--lotus), var(--or), var(--sauge));
+    }
+    .annonce-juin .prochaine-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--lotus);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .annonce-juin .date-juin {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      font-weight: 600;
+      color: var(--nuit);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .annonce-juin .lieu-juin {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terre);
+      margin-bottom: 1.8rem;
+    }
+    /* pastille "bientôt" */
+    .pastille-soon {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--lotus), #b06e63);
+      color: #fff;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.4rem;
+      border-radius: 100px;
+    }
+
+    /* ════════════════════════════════════════
+       COMPTE À REBOURS JUIN
+    ════════════════════════════════════════ */
+    .timer-section {
+      opacity: 0;
+      animation: glisser-haut 0.8s ease forwards 0.6s;
+      margin-bottom: 2.5rem;
+    }
+    .timer-label {
+      text-align: center;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--terre);
+      margin-bottom: 1.2rem;
+    }
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+    }
+    .bloc-temps {
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 14px;
+      padding: 1.5rem 0.5rem 1.2rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .bloc-temps::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--sauge), var(--or), var(--lotus));
+    }
+    .bloc-temps:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(160,132,92,0.15); }
+    .nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1;
+      color: var(--nuit);
+      display: block;
+    }
+    .unite {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--terre);
+      margin-top: 0.4rem;
+      display: block;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+
+    /* ════════════════════════════════════════
+       SÉPARATEUR ÉDITIONS
+    ════════════════════════════════════════ */
+    .sep-editions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+      opacity: 0;
+      animation: glisser-haut 0.8s ease forwards 0.8s;
+    }
+    .sep-editions::before,
+    .sep-editions::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(160,132,92,0.3), transparent);
+    }
+    .sep-editions span {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--terre);
+      white-space: nowrap;
+    }
+
+    /* ════════════════════════════════════════
+       BLOC RÉTROSPECTIVE AVRIL
+    ════════════════════════════════════════ */
+    .retro-bloc {
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(122,158,126,0.3);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      padding: 2rem 1.8rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: glisser-haut 0.8s ease forwards 1s;
+    }
+    .retro-bloc::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--sauge), #5a8e5e);
+    }
+    .retro-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .retro-header .retro-emoji { font-size: 1.8rem; }
+    .retro-header .retro-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: var(--nuit);
+      line-height: 1.1;
+    }
+    .retro-header .retro-date {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sauge);
+    }
+    .retro-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-bottom: 1.4rem;
+    }
+    .stat-item {
+      text-align: center;
+      background: rgba(255,255,255,0.6);
+      border-radius: 10px;
+      padding: 0.9rem 0.4rem;
+    }
+    .stat-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--or);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terre);
+      margin-top: 0.3rem;
+      display: block;
+    }
+    /* nav grille pages avril */
+    .nav-grille-retro {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.7rem;
+    }
+    .nav-carte-retro {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--nuit);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .nav-carte-retro:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(160,132,92,0.15);
+      background: rgba(255,255,255,0.8);
+    }
+    .nav-carte-retro .nc-emoji { font-size: 1.1rem; flex-shrink: 0; }
+
+    /* ════════════════════════════════════════
+       BLOC TEASING JUIN
+    ════════════════════════════════════════ */
+    .teasing-juin {
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      padding: 2rem 1.8rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: glisser-haut 0.8s ease forwards 1.1s;
+    }
+    .teasing-juin::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--lotus), var(--or), var(--lotus));
+    }
+    .teasing-juin .tj-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--lotus);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .teasing-juin .tj-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--nuit);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .teasing-juin .tj-desc {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: rgba(44,44,58,0.55);
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+    }
+    /* nav grille pages juin (fictives) */
+    .nav-grille-juin {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.7rem;
+    }
+    .nav-carte-juin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 1.2rem 0.8rem;
+      background: rgba(255,255,255,0.4);
+      border: 1px dashed rgba(201,169,110,0.4);
+      border-radius: 12px;
+      text-decoration: none;
+      color: rgba(44,44,58,0.4);
+      text-align: center;
+      position: relative;
+      cursor: default;
+      transition: background 0.3s;
+    }
+    .nav-carte-juin::after {
+      content: 'Bientôt';
+      position: absolute;
+      top: 0.4rem; right: 0.5rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lotus);
+      background: rgba(201,133,122,0.12);
+      padding: 0.2rem 0.5rem;
+      border-radius: 100px;
+    }
+    .nav-carte-juin .ncj-emoji { font-size: 1.5rem; filter: grayscale(0.3); }
+    .nav-carte-juin .ncj-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(44,44,58,0.45);
+    }
+    .nav-carte-juin .ncj-desc {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(44,44,58,0.35);
+    }
+    /* variante active quand on aura les pages */
+    .nav-carte-juin.actif {
+      cursor: pointer;
+      color: var(--nuit);
+      border-style: solid;
+      border-color: rgba(201,169,110,0.3);
+    }
+    .nav-carte-juin.actif .ncj-titre { color: var(--terre); }
+    .nav-carte-juin.actif .ncj-desc  { color: rgba(44,44,58,0.5); }
+    .nav-carte-juin.actif::after { display: none; }
+    .nav-carte-juin.actif:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(160,132,92,0.15);
+      background: rgba(255,255,255,0.75);
+    }
+
+    /* ════════════════════════════════════════
+       TAGS
+    ════════════════════════════════════════ */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: glisser-haut 0.8s ease forwards 1.2s;
+    }
+    .tag {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      border: 1px solid rgba(160,132,92,0.35);
+      color: var(--terre);
+      background: rgba(255,255,255,0.4);
+    }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer-bloc {
+      text-align: center;
+      opacity: 0;
+      animation: glisser-haut 0.8s ease forwards 1.3s;
+    }
+
+    /* ════════════════════════════════════════
+       DECO CERCLES
+    ════════════════════════════════════════ */
+    .deco { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .deco-1 { width: 500px; height: 500px; top: -150px; right: -150px; border: 1px solid rgba(201,169,110,0.2); }
+    .deco-2 { width: 300px; height: 300px; bottom: -80px; left: -80px; border: 1px solid rgba(122,158,126,0.25); }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .timer { grid-template-columns: repeat(2, 1fr); }
+      .retro-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 360px) {
+      .nav-grille-retro,
+      .nav-grille-juin { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="deco deco-1"></div>
+  <div class="deco deco-2"></div>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION DESKTOP
+  ══════════════════════════════════════ -->
+  <nav class="nav-principale">
+    <a href="index.html" class="nav-logo">
+      <img src="logo-sansFond.png"
+           alt="Logo Bridge & Flow Folk"
+           style="width:90px;height:90px;object-fit:contain;flex-shrink:0;margin-right:8px;" />
+    </a>
+
+    <div class="nav-liens">
+      <a href="index.html" class="actif">Accueil</a>
+
+      <!-- Dropdown Salon Avril 2026 -->
+      <div class="nav-groupe" id="groupe-avril">
+        <button class="nav-groupe-btn" id="btn-avril" aria-expanded="false" aria-haspopup="true">
+          Salon Avril 2026 <span class="chevron" aria-hidden="true"></span>
+        </button>
+        <div class="nav-dropdown" id="dropdown-avril" role="menu">
+          <a href="programme.html"  role="menuitem">📅 Programme</a>
+          <a href="tombola.html"    role="menuitem">🎟️ Tombola</a>
+          <a href="buvette.html"    role="menuitem">☕ Buvette</a>
+          <a href="foodtruck.html"  role="menuitem">🚚 Food truck</a>
+          <a href="galerie.html"    role="menuitem">📸 Galerie</a>
+          <a href="savon.html"      role="menuitem">🧼 Savons</a>
+          <a href="resultats.html"  role="menuitem">🏆 Résultats tombola</a>
+        </div>
+      </div>
+
+      <!-- Dropdown Salon Juin 2026 -->
+      <div class="nav-groupe" id="groupe-juin">
+        <button class="nav-groupe-btn" id="btn-juin" aria-expanded="false" aria-haspopup="true">
+          Salon Juin 2026 <span class="chevron" aria-hidden="true"></span>
+        </button>
+        <div class="nav-dropdown" id="dropdown-juin" role="menu">
+          <a href="juin-programme.html"  role="menuitem" class="bientot" aria-disabled="true">📅 Programme <em>(bientôt)</em></a>
+          <a href="juin-exposants.html"  role="menuitem" class="bientot" aria-disabled="true">🧘 Exposants <em>(bientôt)</em></a>
+          <a href="juin-tombola.html"    role="menuitem" class="bientot" aria-disabled="true">🎟️ Tombola <em>(bientôt)</em></a>
+          <a href="juin-savon.html"      role="menuitem" class="bientot" aria-disabled="true">🧼 Savons <em>(bientôt)</em></a>
+          <a href="juin-buvette.html"    role="menuitem" class="bientot" aria-disabled="true">☕ Buvette <em>(bientôt)</em></a>
+        </div>
+      </div>
+
+      <a href="presse.html">Presse</a>
+      <a href="apropos.html">À propos</a>
+    </div>
+
+    <button class="nav-burger" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       NAV MOBILE
+  ══════════════════════════════════════ -->
+  <nav class="nav-mobile" id="navMobile" aria-label="Menu mobile">
+    <a href="index.html" class="actif">🏠 Accueil</a>
+
+    <!-- Groupe Avril -->
+    <span style="display:block;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--or);padding:0.8rem 0 0.3rem 0.2rem;font-family:'Josefin Sans',sans-serif;">
+      ── Salon Avril 2026
+    </span>
+    <a href="programme.html">📅 Programme</a>
+    <a href="tombola.html">🎟 Tombola</a>
+    <a href="buvette.html">☕ Buvette</a>
+    <a href="foodtruck.html">🚚 Food truck</a>
+    <a href="savon.html">🧼 Savons</a>
+    <a href="galerie.html">📸 Galerie</a>
+    <a href="resultats.html">🏆 Résultats tombola</a>
+
+    <!-- Groupe Juin -->
+    <span style="display:block;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--lotus);padding:0.8rem 0 0.3rem 0.2rem;font-family:'Josefin Sans',sans-serif;">
+      ── Salon Juin 2026
+    </span>
+    <a href="juin-programme.html" style="opacity:0.45;">📅 Programme (bientôt)</a>
+    <a href="juin-exposants.html" style="opacity:0.45;">🧘 Exposants (bientôt)</a>
+    <a href="juin-tombola.html"   style="opacity:0.45;">🎟 Tombola (bientôt)</a>
+    <a href="juin-savon.html"     style="opacity:0.45;">🧼 Savons (bientôt)</a>
+    <a href="juin-buvette.html"   style="opacity:0.45;">☕ Buvette (bientôt)</a>
+
+    <!-- Commun -->
+    <span style="display:block;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--terre);padding:0.8rem 0 0.3rem 0.2rem;font-family:'Josefin Sans',sans-serif;">
+      ── Association
+    </span>
+    <a href="presse.html">📰 Presse</a>
+    <a href="apropos.html">🌿 À propos</a>
+  </nav>
+
+  <main>
+
+    <!-- ══════════════════════════════════════
+         HERO TEASING
+    ══════════════════════════════════════ -->
+    <div class="hero-teasing">
+      <span class="edition-badge">Bridge &amp; Flow Folk · Créons des ponts</span>
+      <h1>Bien-Être<br><em>et</em><br>Créateurs</h1>
+      <p class="hero-sub">Salon intergénérationnel · Un pont entre les êtres</p>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         ANNONCE JUIN
+    ══════════════════════════════════════ -->
+    <div class="annonce-juin">
+      <span class="prochaine-label">✨ Prochaine édition</span>
+      <div class="date-juin">13 Juin 2026</div>
+      <div class="lieu-juin">📍 Nogent-le-Roi · 28210</div>
+      <span class="pastille-soon">Inscriptions bientôt ouvertes</span>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         COMPTE À REBOURS JUIN
+    ══════════════════════════════════════ -->
+    <div class="timer-section">
+      <p class="timer-label" id="timer-label">Le prochain salon dans</p>
+      <div class="timer" id="timer">
+        <div class="bloc-temps"><span class="nombre" id="jours">00</span><span class="unite">Jours</span></div>
+        <div class="bloc-temps"><span class="nombre" id="heures">00</span><span class="unite">Heures</span></div>
+        <div class="bloc-temps"><span class="nombre" id="minutes">00</span><span class="unite">Minutes</span></div>
+        <div class="bloc-temps"><span class="nombre" id="secondes">00</span><span class="unite">Secondes</span></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SÉPARATEUR
+    ══════════════════════════════════════ -->
+    <div class="sep-editions">
+      <span>Retour sur l'édition Avril 2026</span>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         BLOC RÉTROSPECTIVE AVRIL
+    ══════════════════════════════════════ -->
+    <div class="retro-bloc">
+      <div class="retro-header">
+        <span class="retro-emoji">🌸</span>
+        <div>
+          <div class="retro-titre">Salon Bien-Être &amp; Créateurs</div>
+          <div class="retro-date">4 &amp; 5 Avril 2026 · Nogent-le-Roi</div>
+        </div>
+      </div>
+
+      <!-- Stats édition -->
+      <div class="retro-stats">
+        <div class="stat-item">
+          <span class="stat-nombre">38</span>
+          <span class="stat-label">Exposants</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-nombre">2</span>
+          <span class="stat-label">Journées</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-nombre">2850€</span>
+          <span class="stat-label">Lots tombola</span>
+        </div>
+      </div>
+
+      <!-- Pages de l'édition avril -->
+      <div class="nav-grille-retro">
+        <a href="programme.html"  class="nav-carte-retro"><span class="nc-emoji">📅</span> Programme</a>
+        <a href="tombola.html"    class="nav-carte-retro"><span class="nc-emoji">🎟️</span> Tombola</a>
+        <a href="savon.html"      class="nav-carte-retro"><span class="nc-emoji">🧼</span> Savons</a>
+        <a href="buvette.html"    class="nav-carte-retro"><span class="nc-emoji">☕</span> Buvette</a>
+        <a href="foodtruck.html"  class="nav-carte-retro"><span class="nc-emoji">🚚</span> Food truck</a>
+        <a href="galerie.html"    class="nav-carte-retro"><span class="nc-emoji">📸</span> Galerie</a>
+        <a href="resultats.html"  class="nav-carte-retro" style="grid-column:1/-1;justify-content:center;">
+          <span class="nc-emoji">🏆</span> Résultats de la tombola
+        </a>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         BLOC TEASING JUIN
+    ══════════════════════════════════════ -->
+    <div class="sep-editions">
+      <span>Ce qui vous attend en Juin 2026</span>
+    </div>
+
+    <div class="teasing-juin">
+      <span class="tj-label">Édition été · 13 juin 2026</span>
+      <div class="tj-titre">Une nouvelle édition se prépare…</div>
+      <p class="tj-desc">
+        Exposants, ateliers, conférences, buvette estivale — la prochaine édition du salon
+        prend forme. Les informations seront dévoilées progressivement. Revenez nous voir !
+      </p>
+
+      <!-- Grille pages juin fictives -->
+      <div class="nav-grille-juin">
+        <div class="nav-carte-juin">
+          <span class="ncj-emoji">📅</span>
+          <span class="ncj-titre">Programme</span>
+          <span class="ncj-desc">Ateliers &amp; conférences</span>
+        </div>
+        <div class="nav-carte-juin">
+          <span class="ncj-emoji">🧘</span>
+          <span class="ncj-titre">Exposants</span>
+          <span class="ncj-desc">Passionnés &amp; créateurs</span>
+        </div>
+        <div class="nav-carte-juin">
+          <span class="ncj-emoji">🎟️</span>
+          <span class="ncj-titre">Tombola</span>
+          <span class="ncj-desc">Lots &amp; tirage au sort</span>
+        </div>
+        <div class="nav-carte-juin">
+          <span class="ncj-emoji">🧼</span>
+          <span class="ncj-titre">Savons</span>
+          <span class="ncj-desc">Créations artisanales</span>
+        </div>
+        <div class="nav-carte-juin" style="grid-column:1/-1;">
+          <span class="ncj-emoji">☕</span>
+          <span class="ncj-titre">Buvette estivale</span>
+          <span class="ncj-desc">Boissons &amp; douceurs de saison</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         TAGS
+    ══════════════════════════════════════ -->
+    <div class="tags">
+      <span class="tag">Sophrologie</span><span class="tag">Art Thérapie</span>
+      <span class="tag">Hypnothérapie</span><span class="tag">Musicothérapie</span>
+      <span class="tag">Massages</span><span class="tag">Bijoux</span>
+      <span class="tag">Bougies</span><span class="tag">Naturopathie</span>
+      <span class="tag">Équicoaching</span><span class="tag">Yoga</span>
+      <span class="tag">Bols Chantants</span><span class="tag">Magnétisme</span>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
+    <div class="footer-bloc">
+      <a class="fb-lien"
+         href="https://www.facebook.com/people/Bridge-Flow-Folk-BFF/61587252715739/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+          <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+        </svg>
+        Suivre Bridge &amp; Flow Folk
+      </a>
+      <footer>© 2026 Bridge &amp; Flow Folk · Nogent-le-Roi (28) · 06 18 29 18 73</footer>
+    </div>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       JS — TIMER JUIN + MENUS + PÉTALES
+  ══════════════════════════════════════ -->
+  <script>
+    // ── Compte à rebours vers le 13 juin 2026 ──────────────────────
+    const DEBUT_JUIN = new Date("2026-06-13T10:00:00").getTime();
+
+    const elTimer = document.getElementById("timer");
+    const elLabel = document.getElementById("timer-label");
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    function maj() {
+      const now = Date.now();
+      const d   = DEBUT_JUIN - now;
+
+      if (d <= 0) {
+        // Le salon est passé ou en cours — on affiche un message neutre
+        elLabel.style.display = "none";
+        elTimer.innerHTML = '<p class="fini-msg">🌸 À très bientôt !<br><span style="font-size:1.1rem;opacity:0.75">Suivez-nous pour les prochaines actualités</span></p>';
+        clearInterval(intervalle);
+        return;
+      }
+
+      document.getElementById("jours").textContent    = pad(Math.floor(d / 86400000));
+      document.getElementById("heures").textContent   = pad(Math.floor((d % 86400000) / 3600000));
+      document.getElementById("minutes").textContent  = pad(Math.floor((d % 3600000) / 60000));
+      document.getElementById("secondes").textContent = pad(Math.floor((d % 60000) / 1000));
+    }
+
+    const intervalle = setInterval(maj, 1000);
+    maj();
+
+    // ── Burger mobile ──────────────────────────────────────────────
+    function toggleMenu() {
+      document.getElementById("navMobile").classList.toggle("ouvert");
+    }
+
+    // ── Dropdown Avril ─────────────────────────────────────────────
+    function initDropdown(btnId, ddId) {
+      const btn = document.getElementById(btnId);
+      const dd  = document.getElementById(ddId);
+      if (!btn || !dd) return;
+
+      btn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        // Ferme l'autre dropdown
+        document.querySelectorAll(".nav-dropdown").forEach(el => {
+          if (el !== dd) { el.classList.remove("ouvert"); }
+        });
+        document.querySelectorAll(".nav-groupe-btn").forEach(el => {
+          if (el !== btn) { el.classList.remove("ouvert"); el.setAttribute("aria-expanded","false"); }
+        });
+
+        const ouvert = dd.classList.toggle("ouvert");
+        btn.classList.toggle("ouvert", ouvert);
+        btn.setAttribute("aria-expanded", ouvert);
+      });
+    }
+
+    initDropdown("btn-avril", "dropdown-avril");
+    initDropdown("btn-juin",  "dropdown-juin");
+
+    document.addEventListener("click", function() {
+      document.querySelectorAll(".nav-dropdown").forEach(el => el.classList.remove("ouvert"));
+      document.querySelectorAll(".nav-groupe-btn").forEach(el => {
+        el.classList.remove("ouvert");
+        el.setAttribute("aria-expanded","false");
+      });
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        document.querySelectorAll(".nav-dropdown").forEach(el => el.classList.remove("ouvert"));
+        document.querySelectorAll(".nav-groupe-btn").forEach(el => {
+          el.classList.remove("ouvert");
+          el.setAttribute("aria-expanded","false");
+        });
+      }
+    });
+
+    // ── Pétales (insertion atomique) ───────────────────────────────
+    const PETALES = ["🌸", "🌺", "✿", "❀", "🌼"];
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < 10; i++) {
+      const e = document.createElement("div");
+      e.className = "petale";
+      e.textContent = PETALES[Math.floor(Math.random() * PETALES.length)];
+      const t = Math.random() * 0.8 + 0.6;
+      e.style.cssText = `left:${Math.random()*100}%;font-size:${t}rem;animation-duration:${Math.random()*15+12}s;animation-delay:${Math.random()*15}s;`;
+      fragment.appendChild(e);
+    }
+    document.body.appendChild(fragment);
+
+    // ── Animation scroll ───────────────────────────────────────────
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = "glisser-haut 0.7s ease forwards";
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll(".anime").forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
